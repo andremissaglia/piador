@@ -2,7 +2,7 @@
 
 Trabalho de web
 
-## Instalando dependências:
+## Instalando dependências
 
 Isso só precisa ser feito da primeira vez:
 ```
