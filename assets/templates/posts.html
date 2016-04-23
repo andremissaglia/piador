@@ -1,0 +1,28 @@
+<div class="card col-sm-4">
+	<div class="card-block">
+		<h3 class="card-title">Profile</h3>
+		<div>
+			<img class="profileimage" ng-src="{{user.foto}}" />
+		</div>
+		<div>{{user.nome}}</div>
+		<div>{{user.descricao}}</div>
+	</div>
+</div>
+
+<div class="col-sm-8">
+	<div class="card">
+		<div class="row card-block form-group">
+			<div class="col-sm-12 card-text">
+				<textarea class="form-control" ></textarea>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<button class="btn btn-primary expand">Postar</button>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div ng-repeat="post in posts">
+			<post></post>
+		</div>
+	</div>
+</div>
