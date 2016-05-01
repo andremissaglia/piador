@@ -14,8 +14,9 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			controller: 'LoginController',
 			templateUrl: 'templates/loginform.html',
 		})
-		.when('/logout', {
-			controller: 'LogoutController',
+		.when('/settings', {
+			controller: 'SettingsController',
+			templateUrl: 'templates/settings.html',
 		})
 		.when('/posts', {
 			controller: 'PostController',

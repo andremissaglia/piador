@@ -9,6 +9,9 @@ h1, .lema{
 body{
 	background: url('/images/lindo-passaro-azul-no-galho.jpg');
 }
+.main-container {
+	background: white;
+}
 /*Home*/
 .login-area{
 	background: rgb(238,238,238);

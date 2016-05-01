@@ -1,6 +1,6 @@
 'use strict';
 angular.module('menu')
-.controller('MenuController', ['$scope', '$location', function($scope, $location){
+.controller('MenuController', ['$scope', '$location', 'auth', function($scope, $location, auth){
 	$scope.itens = [
 		{
 			title:'Home',
@@ -12,11 +12,16 @@ angular.module('menu')
 		},
 		{
 			title:'Logout',
-			path:'/logout'
+			path:'logout'
 		},
 	];
 	$scope.go = function(path){
-		$location.path(path);
+		if(path=='logout'){
+			auth.logout();
+			$location.path('/');
+		} else {
+			$location.path(path);
+		}
 	};
 }])
 .directive('topmenu', function(){

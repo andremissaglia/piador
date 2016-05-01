@@ -6,9 +6,9 @@ angular.module('posts', [])
         templateUrl:'templates/post.html'
     }
 })
-.controller('PostController', ['$scope', '$location', 'auth', function($scope, $location, auth) {
+.controller('PostController', ['$scope', '$location', 'auth', 'usermodel', function($scope, $location, auth, usermodel) {
 	if(auth.logado){
-		$scope.user=auth.current;
+		$scope.user=usermodel.get(auth.current);
 	} else {
 		$location.path('/login');
 	}

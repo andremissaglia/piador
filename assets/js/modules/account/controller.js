@@ -12,8 +12,10 @@ angular.module('account')
 		}
 	}
 }])
-.controller('LogoutController',["$rootScope", "$location", "auth",function($rootScope, $location, auth){
-	$rootScope.hideMenu = true;
-	$auth.logout();
-	$location.path('/login');
+.controller('SettingsController',["$scope", "$location", "auth", "usermodel",function($scope, $location, auth, usermodel){
+	$scope.user = usermodel.get(auth.current);
+	$scope.save = function(){
+		usermodel.save(auth.current, $scope.user);
+		$location.path('/posts');
+	}
 }]);
