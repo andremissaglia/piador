@@ -1,9 +1,11 @@
 'use strict';
 angular.module('account', []);
 angular.module('posts', []);
+angular.module('menu', []);
 var myApp = angular.module('piadorApp', [
 	'account',
 	'posts',
+	'menu',
 	'ngRoute',
 ]);
 myApp.config(['$routeProvider', function ($routeProvider) {
@@ -11,12 +13,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		.when('/login', {
 			controller: 'LoginController',
 			templateUrl: 'templates/loginform.html',
-			hideMenus: true
 		})
-
+		.when('/logout', {
+			controller: 'LogoutController',
+		})
 		.when('/posts', {
 			controller: 'PostController',
-			templateUrl: 'templates/posts.html',			
+			templateUrl: 'templates/posts.html',
 		})
 
 		.otherwise({ redirectTo: '/login' });
