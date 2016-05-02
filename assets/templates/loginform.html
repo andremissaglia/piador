@@ -1,5 +1,5 @@
 <div class="col-md-6 col-md-offset-6 login-area">
-	<form ng-controller="LoginController">
+	<form>
 		<div class="form-group">
 			<label for="user_email">Email</label>
 			<input type="email" class="form-control" id="user_email" ng-model="email"/>
@@ -9,6 +9,6 @@
 			<input type="password" class="form-control" id="user_pass" ng-model="senha"/>
 		</div>
 		<button type="submit" class="btn btn-default" ng-click="login()">Login</button>
-		<button type="submit" class="btn btn-default">Cadastrar</button>
+		<button type="submit" class="btn btn-default" ng-click="cadastrar()">Cadastrar</button>
 	</form>
 </div>

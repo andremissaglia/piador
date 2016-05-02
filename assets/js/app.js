@@ -14,6 +14,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			controller: 'LoginController',
 			templateUrl: 'templates/loginform.html',
 		})
+		.when('/signup', {
+			controller: 'SignupController',
+			templateUrl: 'templates/signupform.html',
+		})
 		.when('/settings', {
 			controller: 'SettingsController',
 			templateUrl: 'templates/settings.html',
@@ -22,6 +26,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			controller: 'PostController',
 			templateUrl: 'templates/posts.html',
 		})
-
+		.when('/grupo', {
+			templateUrl: 'templates/grupo.html',
+		})
 		.otherwise({ redirectTo: '/login' });
 }])

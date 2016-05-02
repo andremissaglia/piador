@@ -24,10 +24,25 @@ angular.module('menu')
 		}
 	};
 }])
+.controller('FooterController', ['$scope', '$location', function($scope, $location){
+	$scope.home = function(path){
+		$location.path('/');
+	};
+	$scope.grupo = function(path){
+		$location.path('/grupo');
+	};
+}])
 .directive('topmenu', function(){
     return {
         restrict:'E',
         templateUrl:'templates/menu.html',
         controller:'MenuController'
+    }
+})
+.directive('footermenu', function(){
+    return {
+        restrict:'E',
+        templateUrl:'templates/footer.html',
+        controller:'FooterController'
     }
 });
