@@ -47,6 +47,18 @@ angular.module('account')
 		$location.path('/posts');
 	}
 	$scope.delete = function(){
-		usermodel.delete()
+		if(confirm("Tem certeza que deseja apagar sua conta? Isso é irreversível.")){
+			var mensagem = '';
+			if($scope.user.sexo == 'M'){
+				mensagem = 'Tchau querido!';
+			} else {
+				mensagem = 'Tchau querida!';
+			}
+
+			usermodel.delete(auth.current);
+			auth.logout();
+			$location.path('/');
+			alert(mensagem);
+		}
 	}
 }]);
