@@ -1,5 +1,5 @@
 'use strict';
-angular.module('account', ['ngCookies']);
+angular.module('account',[]);
 angular.module('posts', []);
 angular.module('menu', []);
 var myApp = angular.module('piadorApp', [
