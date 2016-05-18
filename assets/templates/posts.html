@@ -10,17 +10,18 @@
 </div>
 
 <div class="col-sm-8">
-	<div class="card">
+	<div class="card" ng-controller = "NewPostController">
 		<div class="row card-block form-group">
 			<div class="col-sm-12 card-text">
-				<textarea class="form-control" ></textarea>
+				<input type="text" placeholder="Titulo" class="form-control" ng-model="title"></input>
+				<textarea class="form-control" placeholder="O que ta rolando?" ng-model="message"></textarea>
 			</div>
 			<div class="col-sm-6 col-md-3">
-				<button class="btn btn-primary expand">Postar</button>
+				<button class="btn btn-primary expand" ng-click="post()">Postar</button>
 			</div>
 		</div>
 	</div>
-	<div>
+	<div ng-controller="PostsController">
 		<div ng-repeat="post in posts">
 			<post></post>
 		</div>

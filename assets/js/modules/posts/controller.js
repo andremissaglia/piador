@@ -6,8 +6,13 @@ angular.module('posts', [])
         templateUrl:'templates/post.html'
     }
 })
-.controller('PostController', ['$scope', '$location', 'auth', 'usermodel', function($scope, $location, auth, usermodel) {
-	if(auth.logado){
+.controller('PostsController', ['$scope', 'postService', function($scope, postService) {
+	$scope.posts = [];
+	postService.setCallback(function(){
+		$scope.posts = postService.get();
+	});
+	$scope.posts = postService.get();
+/*	if(auth.logado){
 		$scope.user=usermodel.get(auth.current);
 	} else {
 		$location.path('/login');
@@ -26,5 +31,16 @@ angular.module('posts', [])
 			postContent:postContentArray[i],
 			numberComments:postCommentsArray[i]
 		}
-	}
+	}*/
+}])
+
+.controller('NewPostController', ['$scope', 'postService', function($scope, postService){
+	$scope.message = '';
+
+	$scope.post = function(){
+		console.log($scope.message);
+		postService.new($scope.title, $scope.message);
+		$scope.title = '';
+		$scope.message = '';
+	};
 }]);

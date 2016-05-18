@@ -23,7 +23,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'templates/settings.html',
 		})
 		.when('/posts', {
-			controller: 'PostController',
 			templateUrl: 'templates/posts.html',
 		})
 		.when('/grupo', {
