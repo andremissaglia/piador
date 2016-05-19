@@ -1,5 +1,6 @@
 'use strict';
-var users = [{
+//TODO apagar
+var users=[{
 	id:1,
 	email:'admin@admin.net',
 	senha:'123',
@@ -10,22 +11,29 @@ var users = [{
 	nascimento:new Date(2000,0,1),
 }];
 var lastId = 1;
+
 angular.module('account')
-.factory('auth', function(){
+.factory('auth', function($http, $rootScope){
 	var user = {};
-	user.login = function(email, senha){
-		for (var i = users.length - 1; i >= 0; i--) {
-			if(email==users[i].email && senha==users[i].senha){
-				user.current = users[i].id;
-				user.logado = true;
-				break;
-			}
-		}
-		return user.logado;
+	user.current = users[0]; //TODO apagar
+	user.login = function(email, senha, callback){
+		$http.post('auth/login',{
+			email:email,
+			senha:senha
+		}).then(function(response){
+			console.log(response);
+			$rootScope.token = response.token;
+			user.logado = true;
+			callback()
+		}, function(response){
+			user.logado = false;
+			callback();
+		})
 	}
 	user.logout = function(){
 		user.current = {}
 		user.logado = false;
+		$rootScope.token = '';
 	}
 	return user;
 })

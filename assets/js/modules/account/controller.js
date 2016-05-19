@@ -6,10 +6,10 @@ angular.module('account')
 	$scope.email='';
 	$scope.senha='';
 	$scope.login = function(){
-		if(auth.login($scope.email, $scope.senha)){
+		auth.login($scope.email, $scope.senha, function(){
 			$location.path('/posts');
 			$rootScope.hideMenu = false;
-		}
+		})
 	}
 	$scope.cadastrar = function(){
 		$location.path('/signup');
