@@ -1,5 +1,5 @@
 module.exports = function(req, res, next) {
-  if(req.body.token){
+  if(req.body && req.body.token){
     try {
       req.options.authPayload = AuthService.verify(req.body.token);
       return next();

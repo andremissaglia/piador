@@ -40,18 +40,23 @@ angular.module('account')
 		}
 	}
 }])
-.controller('SettingsController',["$scope", "$location", "auth", "usermodel",function($scope, $location, auth, usermodel){
-	$scope.user = usermodel.get(auth.current);
+.controller('SettingsController',["$scope", "$rootScope", "auth", "$location", "usermodel",function($scope, $rootScope, auth, $location, usermodel){
+	$scope.user = $rootScope.currentUser;
 	$scope.save = function(){
 		usermodel.save(auth.current, $scope.user);
 		$location.path('/posts');
 	}
 	$scope.delete = function(){
 		if(confirm("Tem certeza que deseja apagar sua conta? Isso é irreversível.")){
-			usermodel.delete(auth.current);
-			auth.logout();
-			$location.path('/');
-			alert("Tchau!");
+			usermodel.delete($scope.user.id, function(result){
+				if(result.status == 'success'){
+					auth.logout();
+					$location.path('/');
+					alert('Tchau!');
+				} else {
+					alert('Desculpe, ocorreu um erro!');
+				}
+			});
 		}
 	}
 }]);

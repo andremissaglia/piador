@@ -5,7 +5,7 @@ module.exports = {
 		// Poderia checar também se é o administrador que está logado
 		if(userid == req.options.authPayload.user){
 			try {
-				User.destroy(user, function(){
+				UserService.destroy(userid, function(){
 					res.json({
 						status:'success'
 					});

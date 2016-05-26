@@ -8,9 +8,8 @@ angular.module('account')
 			login:login,
 			senha:senha
 		}).then(function(response){
-			console.log(response);
-			$rootScope.token = response.token;
-			$rootScope.currentUser = response.user;
+			$rootScope.token = response.data.token;
+			$rootScope.currentUser = response.data.user;
 			callback()
 		}, function(response){
 			$rootScope.currentUser = {};
@@ -22,7 +21,7 @@ angular.module('account')
 	}
 	return user;
 })
-.factory('usermodel', function(){
+.factory('usermodel', function($http, $rootScope){
 	var model = {};
 	model.get = function(id){
 		
@@ -33,7 +32,16 @@ angular.module('account')
 	model.new = function(formdata){
 		
 	};
-	model.delete = function(id){
+	model.delete = function(id, callback){
+		$http.post('user/destroy',{
+			user:id,
+			token:$rootScope.token
+		}).then(function(response){
+			console.log(response);
+			callback({status:"success"});
+		}, function(response){
+			callback({status:"fail"});
+		})
 	}
 	return model;
 });

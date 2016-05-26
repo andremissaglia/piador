@@ -17,6 +17,10 @@ body{
 	background: rgb(238,238,238);
 	background: rgba(238,238,238,0.5);
 }
+/*Settings*/
+.new-password-form{
+	border: 1px solid black;
+}
 /*Profile*/
 .profile {
 	background-color: #CDCBCB;
