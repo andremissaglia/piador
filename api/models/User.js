@@ -9,13 +9,9 @@ module.exports = {
 		nome: {
 			type:'string'
 		},
-		email: {
-			type:'email',
-			unique:true
-		},
-		sexo: {
+		login: {
 			type:'string',
-			enum:['M','F'],
+			unique:true
 		},
 		foto: {
 			type:'string'

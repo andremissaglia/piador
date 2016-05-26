@@ -3,10 +3,10 @@
 angular.module('account')
 .controller('LoginController',["$scope", "$rootScope", "$location", "auth",function($scope, $rootScope, $location, auth){
 	$rootScope.hideMenu = true;
-	$scope.email='';
+	$scope.user='';
 	$scope.senha='';
 	$scope.login = function(){
-		auth.login($scope.email, $scope.senha, function(){
+		auth.login($scope.user, $scope.senha, function(){
 			$location.path('/posts');
 			$rootScope.hideMenu = false;
 		})
@@ -48,17 +48,10 @@ angular.module('account')
 	}
 	$scope.delete = function(){
 		if(confirm("Tem certeza que deseja apagar sua conta? Isso é irreversível.")){
-			var mensagem = '';
-			if($scope.user.sexo == 'M'){
-				mensagem = 'Tchau querido!';
-			} else {
-				mensagem = 'Tchau querida!';
-			}
-
 			usermodel.delete(auth.current);
 			auth.logout();
 			$location.path('/');
-			alert(mensagem);
+			alert("Tchau!");
 		}
 	}
 }]);

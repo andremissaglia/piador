@@ -1,7 +1,7 @@
 module.exports = function(req, res, next) {
-  if(req.headers.token){
+  if(req.body.token){
     try {
-      req.options.authPayload = AuthService.verify(req.headers.token);
+      req.options.authPayload = AuthService.verify(req.body.token);
       return next();
     } catch(err){}
   }
