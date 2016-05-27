@@ -32,12 +32,14 @@ angular.module('account')
 			token:$rootScope.token,
 			senhaAtual:senhaAtual
 		}).then(function(response){
-			if(user.id == $rootScope.currentUser.id){
-				$rootScope.currentUser = response.data.user;
+			if(response.data.status == 'success'){
+				if(user.id == $rootScope.currentUser.id){
+					$rootScope.currentUser = response.data.user;
+				}
 			}
-			callback({status:"success"});
+			callback(response.data.status);
 		}, function(response){
-			callback({status:"fail"});
+			callback("fail");
 		})
 	};
 	model.new = function(formdata){

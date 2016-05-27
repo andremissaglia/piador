@@ -68,12 +68,13 @@ angular.module('account')
 		if($scope.form.senha1 != ''){
 			user.password = $scope.form.senha1;
 		}
-		usermodel.save(user, $scope.senhaAtual, function(success){
-			if(success){
+		usermodel.save(user, $scope.form.senhaAtual, function(status){
+			if(status == 'success'){
 				resetForm();
 				$location.path('/posts');
 			} else{
-				alert("Ocorreu um erro!"); //TODO exibir o erro decentemente
+				$scope.form.senhaAtual = '';
+				alert("Erro ao atualizar perfil: sua senha está correta?"); //TODO exibir o erro decentemente
 			}
 		});
 	}

@@ -21,11 +21,17 @@ module.exports = {
 		var user = req.body.user;
 		if(user.id == req.options.authPayload.user){
 			try {
-				UserService.update(user, function(usr){
-					res.json({
-						status:'success',
-						user: usr
-					});
+				UserService.update(user, req.body.senhaAtual, function(usr){
+					if(usr){
+						res.json({
+							status:'success',
+							user: usr
+						});
+					} else {
+						res.json({
+							status:'wrongPassword',
+						});
+					}
 				})
 			} catch(err){
 				res.status(500);

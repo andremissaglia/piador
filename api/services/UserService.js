@@ -29,12 +29,12 @@ module.exports = {
 			callback(usr);
 		})
 	},
-	update:function(user, callback){
-		User.update({id:user.id},user).exec(function(err, usr){
+	update:function(user, senhaAtual, callback){
+		User.update({id:user.id, password:senhaAtual},user).exec(function(err, usr){
 			if(err){
 				throw err;
 			}
-			if(usr[0]){
+			if(usr.length == 1){
 				delete usr[0].password;
 				delete usr[0].createdAt;
 				delete usr[0].updatedAt;
