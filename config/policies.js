@@ -33,6 +33,7 @@ module.exports.policies = {
   UserController:{
     '*':true,
     'destroy':'sessionAuth',
+    'update':'sessionAuth'
   }
   /***************************************************************************
   *                                                                          *

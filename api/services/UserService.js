@@ -20,17 +20,32 @@ module.exports = {
 			if(err){
 				throw err;
 			}
-			if(!user){
+			if(!usr){
 				return; // TODO fail function
 			}
 			delete usr.password;
-			delete user.createdAt;
-			delete user.updatedAt;
+			delete usr.createdAt;
+			delete usr.updatedAt;
 			callback(usr);
 		})
 	},
+	update:function(user, callback){
+		User.update({id:user.id},user).exec(function(err, usr){
+			if(err){
+				throw err;
+			}
+			if(usr[0]){
+				delete usr[0].password;
+				delete usr[0].createdAt;
+				delete usr[0].updatedAt;
+				callback(usr[0]);
+			} else {
+				callback(undefined);
+			}
+		})
+	},
 	login: function(login, senha, success, fail){
-		User.findOne({login:login,senha:senha}).exec(function(err, user){
+		User.findOne({login:login,password:senha}).exec(function(err, user){
 			if(err){
 				throw err;
 			}

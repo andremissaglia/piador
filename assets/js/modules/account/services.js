@@ -26,8 +26,19 @@ angular.module('account')
 	model.get = function(id){
 		
 	};
-	model.save = function(id, user){
-		
+	model.save = function(user, senhaAtual, callback){
+		$http.post('user/update',{
+			user:user,
+			token:$rootScope.token,
+			senhaAtual:senhaAtual
+		}).then(function(response){
+			if(user.id == $rootScope.currentUser.id){
+				$rootScope.currentUser = response.data.user;
+			}
+			callback({status:"success"});
+		}, function(response){
+			callback({status:"fail"});
+		})
 	};
 	model.new = function(formdata){
 		
@@ -37,7 +48,6 @@ angular.module('account')
 			user:id,
 			token:$rootScope.token
 		}).then(function(response){
-			console.log(response);
 			callback({status:"success"});
 		}, function(response){
 			callback({status:"fail"});

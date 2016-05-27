@@ -3,19 +3,19 @@
     <fieldset class="form-group">
       <label for="form-nome" class="col-md-2 control-label">Nome</label>
       <div class="col-md-10">
-        <input type="text" class="form-control" id="form-nome" placeholder="Nome" ng-model="user.nome">
+        <input type="text" class="form-control" id="form-nome" placeholder="Nome" ng-model="form.nome">
       </div>
     </fieldset>
     <fieldset class="form-group">
       <label for="form-nascimento" class="col-md-2 control-label">Nascimento</label>
       <div class="col-md-10">
-        <input type="date" class="form-control" id="form-nascimento" ng-model="user.nascimento">
+        <input type="date" class="form-control" id="form-nascimento" ng-model="form.nascimento">
       </div>
     </fieldset>
     <fieldset class="form-group">
       <label for="form-perfil" class="col-md-2 control-label">Perfil</label>
       <div class="col-md-10">
-        <textarea class="form-control" id="form-perfil" rows="3" placeholder="Perfil" ng-model="user.descricao"></textarea>
+        <textarea class="form-control" id="form-perfil" rows="3" placeholder="Perfil" ng-model="form.descricao"></textarea>
       </div>
     </fieldset>
     <div class="new-password-form">
@@ -23,20 +23,20 @@
       <fieldset class="form-group">
         <label for="form-senha-nova" class="col-md-2 control-label">Nova senha</label>
         <div class="col-md-10">
-          <input type="password" class="form-control" id="form-senha-nova" placeholder="Nova Senha" ng-model="newPassword">
+          <input type="password" class="form-control" id="form-senha-nova" placeholder="Nova Senha" ng-model="form.senha1">
         </div>
       </fieldset>
       <fieldset class="form-group">
         <label for="form-senha-repetir" class="col-md-2 control-label">Repetir</label>
         <div class="col-md-10">
-          <input type="password" class="form-control" id="form-senha-repetir" placeholder="Repetir" ng-model="newPassword2">
+          <input type="password" class="form-control" id="form-senha-repetir" placeholder="Repetir" ng-model="form.senha2">
         </div>
       </fieldset>
     </div>
     <div class="form-group">
       <label for="form-senha-atual" class="col-md-2 control-label">Senha Atual</label>
       <div class="col-md-10">
-        <input type="password" class="form-control" id="form-senha-atual" placeholder="Senha Atual" ng-model="password">
+        <input type="password" class="form-control" id="form-senha-atual" placeholder="Senha Atual" ng-model="form.senhaAtual">
       </div>
     </div>
     <div class="form-group">

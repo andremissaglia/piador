@@ -41,10 +41,41 @@ angular.module('account')
 	}
 }])
 .controller('SettingsController',["$scope", "$rootScope", "auth", "$location", "usermodel",function($scope, $rootScope, auth, $location, usermodel){
-	$scope.user = $rootScope.currentUser;
+	$scope.form = {}
+	var resetForm = function(){
+		$scope.form = {
+			nome:$rootScope.currentUser.nome,
+			login:$rootScope.currentUser.login,
+			nascimento:$rootScope.currentUser.nascimento,
+			descricao:$rootScope.currentUser.descricao,
+			senhaAtual:'',
+			senha1:'',
+			senha2:''
+		}
+	}
+	resetForm();
 	$scope.save = function(){
-		usermodel.save(auth.current, $scope.user);
-		$location.path('/posts');
+		if($scope.form.senha1 != $scope.form.senha2){
+			return;
+		}
+		var user = {
+			id:$rootScope.currentUser.id,
+			nome:$scope.form.nome,
+			login:$scope.form.login,
+			nascimento:$scope.form.nascimento,
+			descricao:$scope.form.descricao
+		}
+		if($scope.form.senha1 != ''){
+			user.password = $scope.form.senha1;
+		}
+		usermodel.save(user, $scope.senhaAtual, function(success){
+			if(success){
+				resetForm();
+				$location.path('/posts');
+			} else{
+				alert("Ocorreu um erro!"); //TODO exibir o erro decentemente
+			}
+		});
 	}
 	$scope.delete = function(){
 		if(confirm("Tem certeza que deseja apagar sua conta? Isso é irreversível.")){
