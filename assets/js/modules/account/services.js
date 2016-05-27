@@ -1,27 +1,47 @@
 'use strict';
 
 angular.module('account')
-.factory('auth', function($http, $rootScope){
+.factory('auth', function($http, $window, $rootScope){
 	var user = {};
+	user.token='';
+	if($window.localStorage.token && $window.localStorage.currentUser){
+		user.token = $window.localStorage.token;
+		user.currentUser = JSON.parse($window.localStorage.currentUser);
+	}
 	user.login = function(login, senha, callback){
 		$http.post('auth/login',{
 			login:login,
 			senha:senha
 		}).then(function(response){
-			$rootScope.token = response.data.token;
-			$rootScope.currentUser = response.data.user;
+			user.token = response.data.token;
+			user.currentUser = response.data.user;
+
+			$window.localStorage.token = response.data.token;
+			$window.localStorage.currentUser = JSON.stringify(response.data.user);
+
+			$rootScope.$emit('loginEvent');
 			callback()
 		}, function(response){
-			$rootScope.currentUser = {};
+			user.currentUser = {};
+			$rootScope.$emit('logoutEvent');
 			// TODO avisar o usuario do erro
 		})
 	}
 	user.logout = function(){
-		$rootScope.token = '';
+		user.token = '';
+		user.currentUser = {};
+
+		$window.localStorage.token = '';
+		$window.localStorage.currentUser = '';
+
+		$rootScope.$emit('logoutEvent');
+	}
+	user.logado = function(){
+		return user.token != '';
 	}
 	return user;
 })
-.factory('usermodel', function($http, $rootScope){
+.factory('usermodel', function($http, auth){
 	var model = {};
 	model.get = function(id){
 		
@@ -29,12 +49,12 @@ angular.module('account')
 	model.save = function(user, senhaAtual, callback){
 		$http.post('user/update',{
 			user:user,
-			token:$rootScope.token,
+			token:auth.token,
 			senhaAtual:senhaAtual
 		}).then(function(response){
 			if(response.data.status == 'success'){
-				if(user.id == $rootScope.currentUser.id){
-					$rootScope.currentUser = response.data.user;
+				if(user.id == auth.currentUser.id){
+					auth.currentUser = response.data.user;
 				}
 			}
 			callback(response.data.status);
@@ -48,7 +68,7 @@ angular.module('account')
 	model.delete = function(id, callback){
 		$http.post('user/destroy',{
 			user:id,
-			token:$rootScope.token
+			token:auth.token
 		}).then(function(response){
 			callback({status:"success"});
 		}, function(response){

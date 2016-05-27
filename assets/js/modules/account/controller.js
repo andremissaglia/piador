@@ -2,13 +2,11 @@
  
 angular.module('account')
 .controller('LoginController',["$scope", "$rootScope", "$location", "auth",function($scope, $rootScope, $location, auth){
-	$rootScope.hideMenu = true;
 	$scope.user='';
 	$scope.senha='';
 	$scope.login = function(){
 		auth.login($scope.user, $scope.senha, function(){
 			$location.path('/posts');
-			$rootScope.hideMenu = false;
 		})
 	}
 	$scope.cadastrar = function(){
@@ -16,7 +14,6 @@ angular.module('account')
 	}
 }])
 .controller('SignupController',["$scope", "$rootScope", "$location","usermodel", "auth",function($scope, $rootScope, $location, usermodel, auth){
-	$rootScope.hideMenu = true;
 	$scope.formdata = {
 		email:'',
 		nome:'',
@@ -36,18 +33,17 @@ angular.module('account')
 		}
 		if(usermodel.new($scope.formdata)){
 			$location.path('/posts');
-			$rootScope.hideMenu = false;
 		}
 	}
 }])
-.controller('SettingsController',["$scope", "$rootScope", "auth", "$location", "usermodel",function($scope, $rootScope, auth, $location, usermodel){
+.controller('SettingsController',["$scope", "auth", "$location", "usermodel",function($scope, auth, $location, usermodel){
 	$scope.form = {}
 	var resetForm = function(){
 		$scope.form = {
-			nome:$rootScope.currentUser.nome,
-			login:$rootScope.currentUser.login,
-			nascimento:$rootScope.currentUser.nascimento,
-			descricao:$rootScope.currentUser.descricao,
+			nome:auth.currentUser.nome,
+			login:auth.currentUser.login,
+			nascimento:auth.currentUser.nascimento,
+			descricao:auth.currentUser.descricao,
 			senhaAtual:'',
 			senha1:'',
 			senha2:''
@@ -59,7 +55,7 @@ angular.module('account')
 			return;
 		}
 		var user = {
-			id:$rootScope.currentUser.id,
+			id:auth.currentUser.id,
 			nome:$scope.form.nome,
 			login:$scope.form.login,
 			nascimento:$scope.form.nascimento,
