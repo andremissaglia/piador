@@ -14,26 +14,49 @@ angular.module('account')
 	}
 }])
 .controller('SignupController',["$scope", "$rootScope", "$location","usermodel", "auth",function($scope, $rootScope, $location, usermodel, auth){
-	$scope.formdata = {
-		email:'',
+	$scope.user = {
+		login:'',
 		nome:'',
 		nascimento:new Date(2000,0,1),
-		senha:'',
-		senha2:''
-	}
+	};
+	$scope.senha1 = '';
+	$scope.senha2 = '';
 	$scope.mensagem='';
 	$scope.cadastrar = function(){
+		$scope.mensagem='';
+		var error = false;
 		if(!$scope.signupform.$valid){
 			$scope.mensagem = "Prencha todos os campos!";
-			return;
+			error = true;
 		}
-		if($scope.formdata.senha != $scope.formdata.senha2){
+		if($scope.senha1 != $scope.senha2){
 			$scope.mensagem = "As senhas não coincidem";
+			error = true;
+		}
+		var user = $scope.user;
+		user.password = $scope.senha1;
+		//apaga a senha em toda tentativa
+		$scope.senha1 = '';
+		$scope.senha2 = '';
+
+		if(error){
 			return;
 		}
-		if(usermodel.new($scope.formdata)){
-			$location.path('/posts');
-		}
+		usermodel.new(user, function(){
+			//apaga formulario se cadastro teve sucesso
+			$scope.login = '';
+			$scope.nome = '';
+			$scope.nascimento = new Date(2000,0,1);
+			//redireciona
+			$location.path('/login');
+		}, function(){
+			$scope.mensagem='Ocorreu um erro, tente novamente';
+		})
+			
+		
+	}
+	$scope.voltar = function(){
+		$location.path('/login');
 	}
 }])
 .controller('SettingsController',["$scope", "auth", "$location", "usermodel",function($scope, auth, $location, usermodel){
@@ -76,7 +99,7 @@ angular.module('account')
 	}
 	$scope.delete = function(){
 		if(confirm("Tem certeza que deseja apagar sua conta? Isso é irreversível.")){
-			usermodel.delete($scope.user.id, function(result){
+			usermodel.delete(auth.currentUser.id, function(result){
 				if(result.status == 'success'){
 					auth.logout();
 					$location.path('/');

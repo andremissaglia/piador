@@ -62,8 +62,14 @@ angular.module('account')
 			callback("fail");
 		})
 	};
-	model.new = function(formdata){
-		
+	model.new = function(user, success, fail){
+		$http.post('user/new',{
+			user:user,
+		}).then(function(response){
+			success();
+		}, function(response){
+			fail();
+		})
 	};
 	model.delete = function(id, callback){
 		$http.post('user/destroy',{

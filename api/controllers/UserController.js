@@ -39,5 +39,14 @@ module.exports = {
 		} else {
 			res.status(403)
 		}
+	},
+	new: function(req, res){
+		var user = req.body.user;
+		UserService.create(user, function(usr){
+			res.json({
+				status:"success",
+				user:usr
+			});
+		});
 	}
 }

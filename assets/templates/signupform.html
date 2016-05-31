@@ -2,25 +2,26 @@
 	{{mensagem}}
 	<form name="signupform">
 		<div class="form-group">
-			<label for="user_email">Email</label>
-			<input type="email" class="form-control" id="user_email" required="required" ng-model="formdata.email"/>
+			<label for="user_login">Login</label>
+			<input type="text" class="form-control" id="user_login" required="required" ng-model="user.login"/>
 		</div>
 		<div class="form-group">
 			<label for="user_nome">Nome</label>
-			<input type="text" class="form-control" id="user_nome" required="required" ng-model="formdata.nome" />
+			<input type="text" class="form-control" id="user_nome" required="required" ng-model="user.nome" />
 		</div>
 		<div class="form-group">
 			<label for="user_nascimento">Nascimento</label>
-			<input type="date" class="form-control" id="user_nascimento" required="required" ng-model="formdata.nascimento"/>
+			<input type="date" class="form-control" id="user_nascimento" required="required" ng-model="user.nascimento"/>
 		</div>
 		<div class="form-group">
 			<label for="user_pass">Senha</label>
-			<input type="password" class="form-control" id="user_pass" required="required" ng-model="formdata.senha"/>
+			<input type="password" class="form-control" id="user_pass" required="required" ng-model="senha1"/>
 		</div>
 		<div class="form-group">
 			<label for="user_pass2">Confirmar Senha</label>
-			<input type="password" class="form-control" id="user_pass2" required="required" ng-model="formdata.senha2"/>
+			<input type="password" class="form-control" id="user_pass2" required="required" ng-model="senha2"/>
 		</div>
+		<button class="btn" ng-click="voltar()">Voltar</button>
 		<button type="submit" class="btn btn-default" ng-click="cadastrar()" ng-disabled="!signupform.$valid">Cadastrar</button>
 	</form>
 </div>
