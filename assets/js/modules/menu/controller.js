@@ -1,6 +1,7 @@
 'use strict';
 angular.module('menu')
-.controller('MenuController', ['$scope', '$location', 'auth', function($scope, $location, auth){
+.controller('MenuController', ['$scope', '$rootScope', 'auth','$location', function($scope, $rootScope, auth, $location){
+	$scope.hideMenu=!auth.logado();
 	$scope.itens = [
 		{
 			title:'Home',
@@ -23,6 +24,12 @@ angular.module('menu')
 			$location.path(path);
 		}
 	};
+	$rootScope.$on('loginEvent', function(event){
+		$scope.hideMenu=false;
+	});
+	$rootScope.$on('logoutEvent', function(event){
+		$scope.hideMenu=true;
+	});
 }])
 .controller('FooterController', ['$scope', '$location', function($scope, $location){
 	$scope.home = function(path){
