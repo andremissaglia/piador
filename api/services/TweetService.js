@@ -1,5 +1,6 @@
 module.exports = {
 	new: function(tweet, callback){
+		//TODO timestamp
 		Tweet.create(tweet).exec(function(err, post) {
 			if (err) { 
 				throw err; 

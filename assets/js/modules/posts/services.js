@@ -1,24 +1,29 @@
 angular.module('posts')
 
-.factory('postService', function(){
+.factory('postService', function($http, $rootScope){
 	var callback  = undefined;
-	var posts = [];
 	return {
 		new: function(title,post){
-			var post = {
-				id:1,
-				user:1,
-				title: title,
-				text: post,
-				timestamp: "2016-05-10 10:23:45 TZ=-3"
-			};
-			posts.unshift(post);
-			if(callback != undefined){
-				callback();
-			}
+			$http.post('tweet/new',{
+				'token': $rootScope.token,
+				'tweet': {
+					'user': $rootScope.currentUser.id,
+					'title': title,
+					'text': post,
+				}
+			}).then(function(response) {
+				if(callback != undefined){
+					callback();
+				}
+			}, function(response) {})
 		},
-		get: function(){
-			return posts;
+		fetchUserPosts: function(callback){
+			$http.post('tweet/get',{
+				token:$rootScope.token,
+				user:$rootScope.currentUser.id
+			}).then(function (response) {
+				callback(response.data);
+			},function (response) {});
 		},
 		setCallback: function(setCall){
 			callback = setCall;
