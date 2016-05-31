@@ -1,5 +1,8 @@
 module.exports = {
 	create: function(user, callback){
+		if(!user.foto){
+			user.foto = '/images/FCKXPMEFCZERDQD.jpg';
+		}
 		User.create(user).exec(function(err, usr){
 			if(err){
 				throw err;

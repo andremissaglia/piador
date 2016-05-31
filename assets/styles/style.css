@@ -50,3 +50,7 @@ body{
 .expand {
 	width: 100%;
 }
+.miniprofile .description {
+	text-align: justify;
+	white-space: pre-line;
+}

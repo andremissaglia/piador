@@ -1,6 +1,13 @@
 'use strict';
  
 angular.module('account')
+.directive('miniprofile', function(){
+    return {
+        restrict:'E',
+        templateUrl:'templates/miniprofile.html',
+        controller: 'ProfileController'
+    }
+})
 .controller('LoginController',["$scope", "$rootScope", "$location", "auth",function($scope, $rootScope, $location, auth){
 	$scope.user='';
 	$scope.senha='';
@@ -12,6 +19,12 @@ angular.module('account')
 	$scope.cadastrar = function(){
 		$location.path('/signup');
 	}
+}])
+.controller('ProfileController',["$scope", "$rootScope","auth",function($scope, $rootScope, auth){
+	$scope.user=auth.currentUser;
+	$rootScope.$on('loginEvent', function(event){
+		$scope.user = auth.currentUser;
+	});
 }])
 .controller('SignupController',["$scope", "$rootScope", "$location","usermodel", "auth",function($scope, $rootScope, $location, usermodel, auth){
 	$scope.user = {

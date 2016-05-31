@@ -1,16 +1,9 @@
 <div class="card col-sm-4">
-	<div class="card-block">
-		<h3 class="card-title">Profile</h3>
-		<div>
-			<img class="profileimage" ng-src="{{user.foto}}" />
-		</div>
-		<div>{{user.nome}}</div>
-		<div>{{user.descricao}}</div>
-	</div>
+	<miniprofile></miniprofile>
 </div>
 
 <div class="col-sm-8">
-	<div class="card" ng-controller = "NewPostController">
+	<div class="card" ng-controller="NewPostController">
 		<div class="row card-block">
 			<div class="col-sm-12 card-text">
 				<fieldset class="form-group">

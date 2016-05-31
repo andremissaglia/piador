@@ -23,7 +23,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'templates/settings.html',
 		})
 		.when('/posts', {
-			templateUrl: 'templates/posts.html',
+			templateUrl: 'templates/dashboard.html',
 		})
 		.when('/grupo', {
 			templateUrl: 'templates/grupo.html',
