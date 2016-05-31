@@ -34,6 +34,9 @@ module.exports.policies = {
     '*':true,
     'destroy':'sessionAuth',
     'update':'sessionAuth'
+  },
+  TweetController:{
+    '*':'sessionAuth'
   }
   /***************************************************************************
   *                                                                          *

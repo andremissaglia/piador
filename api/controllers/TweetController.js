@@ -1,7 +1,7 @@
 module.exports={
-	new:function(req, res){
+	tweet:function(req, res){
 		var tweet = req.body.tweet;
-		//TODO validar se o dono do tweet é o dono do token
+		tweet.user = req.options.authPayload.user;
 		TweetService.new(tweet, function(){
 			res.json({status:'success'});
 		})

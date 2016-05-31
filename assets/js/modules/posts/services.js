@@ -1,27 +1,24 @@
 angular.module('posts')
 
-.factory('postService', function($http, auth){
+.factory('postService', function(auth, ApiService){
 	var callback  = undefined;
 	return {
 		new: function(title,post){
-			$http.post('tweet/new',{
-				'token': auth.token,
+			ApiService.post('tweet/tweet',{
 				'tweet': {
-					'user': auth.currentUser.id,
 					'title': title,
 					'text': post,
 				}
-			}).then(function(response) {
+			}, function(response) {
 				if(callback != undefined){
 					callback();
 				}
 			}, function(response) {})
 		},
 		fetchUserPosts: function(callback){
-			$http.post('tweet/get',{
-				token:auth.token,
+			ApiService.post('tweet/get',{
 				user:auth.currentUser.id
-			}).then(function (response) {
+			},function (response) {
 				callback(response.data);
 			},function (response) {});
 		},

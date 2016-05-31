@@ -41,17 +41,16 @@ angular.module('account')
 	}
 	return user;
 })
-.factory('usermodel', function($http, auth){
+.factory('usermodel', function($http, auth, ApiService){
 	var model = {};
 	model.get = function(id){
 		
 	};
 	model.save = function(user, senhaAtual, callback){
-		$http.post('user/update',{
+		ApiService.post('user/update',{
 			user:user,
-			token:auth.token,
 			senhaAtual:senhaAtual
-		}).then(function(response){
+		}, function(response){
 			if(response.data.status == 'success'){
 				if(user.id == auth.currentUser.id){
 					auth.currentUser = response.data.user;
@@ -72,10 +71,9 @@ angular.module('account')
 		})
 	};
 	model.delete = function(id, callback){
-		$http.post('user/destroy',{
+		ApiService.post('user/destroy',{
 			user:id,
-			token:auth.token
-		}).then(function(response){
+		}, function(response){
 			callback({status:"success"});
 		}, function(response){
 			callback({status:"fail"});

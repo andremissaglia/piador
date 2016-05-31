@@ -37,4 +37,23 @@ angular.module('utils')
 			}
 		}
 	};
+})
+.factory('ApiService', function($http, auth, $location, MessagesService){
+	var loginPage = '/login';
+	return {
+		//funciona como o $http, mas envia o token junto,
+		// e redireciona para a página de login se não autorizado
+		post:function(path, data, success, fail){
+			data.token = auth.token;
+			$http.post(path, data).then(success,function(response){
+				if(response.status==401){
+					$location.path('/');
+					auth.logout();
+					MessagesService.error('Por favor faça login');
+					return;
+				}
+				fail(response);
+			});
+		}
+	};
 });
