@@ -1,13 +1,13 @@
 angular.module('posts')
 
-.factory('postService', function($http, $rootScope){
+.factory('postService', function($http, auth){
 	var callback  = undefined;
 	return {
 		new: function(title,post){
 			$http.post('tweet/new',{
-				'token': $rootScope.token,
+				'token': auth.token,
 				'tweet': {
-					'user': $rootScope.currentUser.id,
+					'user': auth.currentUser.id,
 					'title': title,
 					'text': post,
 				}
@@ -19,8 +19,8 @@ angular.module('posts')
 		},
 		fetchUserPosts: function(callback){
 			$http.post('tweet/get',{
-				token:$rootScope.token,
-				user:$rootScope.currentUser.id
+				token:auth.token,
+				user:auth.currentUser.id
 			}).then(function (response) {
 				callback(response.data);
 			},function (response) {});

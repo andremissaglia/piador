@@ -8,6 +8,7 @@ h1, .lema{
 }
 body{
 	background: url('/images/lindo-passaro-azul-no-galho.jpg');
+	padding-bottom: 54px;
 }
 .main-container {
 	background: white;

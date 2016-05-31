@@ -11,13 +11,17 @@
 
 <div class="col-sm-8">
 	<div class="card" ng-controller = "NewPostController">
-		<div class="row card-block form-group">
+		<div class="row card-block">
 			<div class="col-sm-12 card-text">
-				<input type="text" placeholder="Titulo" class="form-control" ng-model="title"></input>
-				<textarea class="form-control" placeholder="O que ta rolando?" ng-model="message"></textarea>
+				<fieldset class="form-group">
+					<input type="text" placeholder="Titulo" class="form-control" ng-model="title"></input>
+				</fieldset>
+				<fieldset class="form-group">
+					<textarea class="form-control" placeholder="O que ta rolando?" ng-model="message"></textarea>
+				</fieldset>
 			</div>
-			<div class="col-sm-6 col-md-3">
-				<button class="btn btn-primary expand right" ng-click="post()">Postar</button>
+			<div class="col-sm-6 col-sm-offset-6 col-md-3 col-md-offset-9">
+				<button class="btn btn-primary expand" ng-click="post()">Postar</button>
 			</div>
 		</div>
 	</div>
