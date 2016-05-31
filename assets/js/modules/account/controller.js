@@ -8,12 +8,14 @@ angular.module('account')
         controller: 'ProfileController'
     }
 })
-.controller('LoginController',["$scope", "$rootScope", "$location", "auth",function($scope, $rootScope, $location, auth){
+.controller('LoginController',["$scope", "$rootScope", "$location", "auth", "MessagesService",function($scope, $rootScope, $location, auth, MessagesService){
 	$scope.user='';
 	$scope.senha='';
 	$scope.login = function(){
 		auth.login($scope.user, $scope.senha, function(){
 			$location.path('/posts');
+		}, function(){
+			MessagesService.error('Falha no login: Os dados estão certos?');
 		})
 	}
 	$scope.cadastrar = function(){

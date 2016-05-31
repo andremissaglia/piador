@@ -8,7 +8,7 @@ angular.module('account')
 		user.token = $window.localStorage.token;
 		user.currentUser = JSON.parse($window.localStorage.currentUser);
 	}
-	user.login = function(login, senha, callback){
+	user.login = function(login, senha, success, fail){
 		$http.post('auth/login',{
 			login:login,
 			senha:senha
@@ -20,11 +20,11 @@ angular.module('account')
 			$window.localStorage.currentUser = JSON.stringify(response.data.user);
 
 			$rootScope.$emit('loginEvent');
-			callback()
+			success();
 		}, function(response){
 			user.currentUser = {};
 			$rootScope.$emit('logoutEvent');
-			// TODO avisar o usuario do erro
+			fail();
 		})
 	}
 	user.logout = function(){
