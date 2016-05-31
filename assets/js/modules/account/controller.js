@@ -26,7 +26,7 @@ angular.module('account')
 		$scope.user = auth.currentUser;
 	});
 }])
-.controller('SignupController',["$scope", "$rootScope", "$location","usermodel", "auth",function($scope, $rootScope, $location, usermodel, auth){
+.controller('SignupController',["$scope", "$rootScope", "$location","usermodel", "auth", "MessagesService",function($scope, $rootScope, $location, usermodel, auth, MessagesService){
 	$scope.user = {
 		login:'',
 		nome:'',
@@ -34,16 +34,14 @@ angular.module('account')
 	};
 	$scope.senha1 = '';
 	$scope.senha2 = '';
-	$scope.mensagem='';
 	$scope.cadastrar = function(){
 		$scope.mensagem='';
 		var error = false;
 		if(!$scope.signupform.$valid){
-			$scope.mensagem = "Prencha todos os campos!";
+			MessagesService.error("Prencha todos os campos!");
 			error = true;
-		}
-		if($scope.senha1 != $scope.senha2){
-			$scope.mensagem = "As senhas não coincidem";
+		} else if($scope.senha1 != $scope.senha2){
+			MessagesService.error("As senhas não coincidem");
 			error = true;
 		}
 		var user = $scope.user;
@@ -63,7 +61,7 @@ angular.module('account')
 			//redireciona
 			$location.path('/login');
 		}, function(){
-			$scope.mensagem='Ocorreu um erro, tente novamente';
+			MessagesService.error('Ocorreu um erro, tente novamente');
 		})
 			
 		

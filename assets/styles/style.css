@@ -13,6 +13,11 @@ body{
 .main-container {
 	background: white;
 }
+.msg {
+	padding:0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
 /*Home*/
 .login-area{
 	background: rgb(238,238,238);

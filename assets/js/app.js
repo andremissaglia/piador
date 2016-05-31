@@ -2,10 +2,12 @@
 angular.module('account',[]);
 angular.module('posts', []);
 angular.module('menu', []);
+angular.module('utils', []);
 var myApp = angular.module('piadorApp', [
 	'account',
 	'posts',
 	'menu',
+	'utils',
 	'ngRoute',
 ]);
 myApp.config(['$routeProvider', function ($routeProvider) {
