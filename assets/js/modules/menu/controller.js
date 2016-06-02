@@ -8,6 +8,14 @@ angular.module('menu')
 			path:'/posts'
 		},
 		{
+			title:'Seguidores',
+			path:'/followers'
+		},
+		{
+			title:'Seguindo',
+			path:'/following'
+		},
+		{
 			title:'Preferências',
 			path:'/settings'
 		},

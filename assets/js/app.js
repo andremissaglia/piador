@@ -3,11 +3,13 @@ angular.module('account',[]);
 angular.module('posts', []);
 angular.module('menu', []);
 angular.module('utils', []);
+angular.module('friends', []);
 var myApp = angular.module('piadorApp', [
 	'account',
 	'posts',
 	'menu',
 	'utils',
+	'friends',
 	'ngRoute',
 ]);
 myApp.config(['$routeProvider', function ($routeProvider) {
@@ -29,6 +31,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		})
 		.when('/grupo', {
 			templateUrl: 'templates/grupo.html',
+		})
+		.when('/followers', {
+			templateUrl: 'templates/followers.html',
+		})
+		.when('/following', {
+			templateUrl: 'templates/following.html',
+			controller: 'FollowingController',
 		})
 		.otherwise({ redirectTo: '/login' });
 }])

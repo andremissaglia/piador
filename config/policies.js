@@ -37,6 +37,9 @@ module.exports.policies = {
   },
   TweetController:{
     '*':'sessionAuth'
+  },
+  FollowController:{
+    '*':'sessionAuth'
   }
   /***************************************************************************
   *                                                                          *

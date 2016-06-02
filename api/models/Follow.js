@@ -6,10 +6,12 @@ module.exports = {
                         autoIncrement: true
                 },
                 follower: {
-                        type: 'integer'
+                        model: 'User',
+                        required:true
                 },
-                follow: {
-                        type: 'integer'
+                follows: {
+                        model: 'User',
+                        required:true
                 },
                 timestamp: {
                         type: 'date'

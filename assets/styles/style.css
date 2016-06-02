@@ -66,3 +66,7 @@ main{
 	text-align: justify;
 	white-space: pre-line;
 }
+/*Friends*/
+.follow-line{
+	line-height: 2.5em;
+}
