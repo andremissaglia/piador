@@ -22,6 +22,9 @@ angular.module('account')
 		$location.path('/signup');
 	}
 }])
+.controller('LogoutController',['auth', function(auth){
+	auth.logout();
+}])
 .controller('ProfileController',["$scope", "$rootScope","auth",function($scope, $rootScope, auth){
 	$scope.user=auth.currentUser;
 	$rootScope.$on('loginEvent', function(event){

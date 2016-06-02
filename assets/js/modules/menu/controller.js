@@ -5,33 +5,25 @@ angular.module('menu')
 	$scope.itens = [
 		{
 			title:'Home',
-			path:'/posts'
+			path:'#/posts'
 		},
 		{
 			title:'Seguidores',
-			path:'/followers'
+			path:'#/followers'
 		},
 		{
 			title:'Seguindo',
-			path:'/following'
+			path:'#/following'
 		},
 		{
 			title:'Preferências',
-			path:'/settings'
+			path:'#/settings'
 		},
 		{
 			title:'Logout',
-			path:'logout'
+			path:'#/logout'
 		},
 	];
-	$scope.go = function(path){
-		if(path=='logout'){
-			auth.logout();
-			$location.path('/');
-		} else {
-			$location.path(path);
-		}
-	};
 	$rootScope.$on('loginEvent', function(event){
 		$scope.hideMenu=false;
 	});
