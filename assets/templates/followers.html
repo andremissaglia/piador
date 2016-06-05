@@ -1,0 +1,9 @@
+<div class="main-container col-sm-12">
+	<div class="list-group" ng-controller="FollowController">
+		<a class="list-group-item follow-line" ng-repeat="f in followers">
+			{{f.pessoa.nome}}
+			<button class="btn btn-flat pull-xs-right" ng-click="follow(f.pessoa.id)" ng-hide="f.reciproco">Follow</button>
+			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(f.pessoa.id)" ng-show="f.reciproco">Unfollow</button>
+		</a>
+	</div>
+</div>

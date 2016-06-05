@@ -5,7 +5,6 @@ angular.module('friends')
 	return {
 		getFollows:function(callback){
 			ApiService.post('/follow/getFollows',{}, function(response){
-				console.log(response.data[0]);
 				callback(response.data);
 			}, function(response){
 				callback([]);
@@ -17,6 +16,13 @@ angular.module('friends')
 			}, function(response){
 				callback([]);
 			});
+		},
+		follow:function(id, callback){
+			ApiService.post('/follow/follow',{
+				userid:id
+			}, function(response){
+				callback();
+			}, function(response){});
 		},
 		unfollow:function(id, callback){
 			ApiService.post('/follow/unfollow',{

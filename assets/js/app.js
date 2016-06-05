@@ -41,7 +41,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		})
 		.when('/following', {
 			templateUrl: 'templates/following.html',
-			controller: 'FollowingController',
 		})
 		.otherwise({ redirectTo: '/login' });
 }])

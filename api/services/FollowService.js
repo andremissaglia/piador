@@ -32,11 +32,10 @@ module.exports={
 			select:['id', 'nome', 'foto']
 		})
 		.exec(function(err, followers){
-			sails.log.debug(followers);
 			var list = [];
 			for (var i = 0; i < followers.length; i++) {
 				list.push({
-					follower:followers[i].follower,
+					pessoa:followers[i].follower,
 					timestamp:followers[i].timestamp
 				});
 			}
@@ -51,7 +50,7 @@ module.exports={
 			var list = [];
 			for (var i = 0; i < follows.length; i++) {
 				list.push({
-					follows:follows[i].follows,
+					pessoa:follows[i].follows,
 					timestamp:follows[i].timestamp
 				});
 			}
