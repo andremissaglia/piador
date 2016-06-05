@@ -1,13 +1,13 @@
 'use strict';
 angular.module('account',[]);
-angular.module('posts', []);
+angular.module('profile', []);
 angular.module('menu', []);
 angular.module('utils', []);
 angular.module('friends', []);
 angular.module('search', []);
 var myApp = angular.module('piadorApp', [
 	'account',
-	'posts',
+	'profile',
 	'menu',
 	'utils',
 	'friends',
@@ -32,7 +32,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			controller: 'SettingsController',
 			templateUrl: 'templates/settings.html',
 		})
-		.when('/posts', {
+		.when('/dashboard', {
 			templateUrl: 'templates/dashboard.html',
 		})
 		.when('/grupo', {
@@ -47,6 +47,9 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		.when('/search/:termo', {
 			templateUrl: 'templates/search.html',
 			controller: 'SearchController',
+		})
+		.when('/user/:userid', {
+			templateUrl: 'templates/userprofile.html',
 		})
 		.otherwise({ redirectTo: '/login' });
 }])

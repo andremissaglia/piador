@@ -1,4 +1,6 @@
-angular.module('posts')
+'use strict';
+
+angular.module('profile')
 
 .factory('postService', function(auth, ApiService){
 	var callback  = undefined;
@@ -18,6 +20,13 @@ angular.module('posts')
 		fetchUserPosts: function(callback){
 			ApiService.post('tweet/get',{
 				user:auth.currentUser.id
+			},function (response) {
+				callback(response.data);
+			},function (response) {});
+		},
+		fetchPosts: function(uid, callback){
+			ApiService.post('tweet/get',{
+				user:uid
 			},function (response) {
 				callback(response.data);
 			},function (response) {});

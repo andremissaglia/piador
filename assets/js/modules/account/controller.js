@@ -5,7 +5,7 @@ angular.module('account')
     return {
         restrict:'E',
         templateUrl:'templates/miniprofile.html',
-        controller: 'ProfileController'
+        controller: 'MyProfileController'
     }
 })
 .controller('LoginController',["$scope", "$rootScope", "$location", "auth", "MessagesService",function($scope, $rootScope, $location, auth, MessagesService){
@@ -13,7 +13,7 @@ angular.module('account')
 	$scope.senha='';
 	$scope.login = function(){
 		auth.login($scope.user, $scope.senha, function(){
-			$location.path('/posts');
+			$location.path('/dashboard');
 		}, function(){
 			MessagesService.error('Falha no login: Os dados estão certos?');
 		})
@@ -25,7 +25,7 @@ angular.module('account')
 .controller('LogoutController',['auth', function(auth){
 	auth.logout();
 }])
-.controller('ProfileController',["$scope", "$rootScope","auth",function($scope, $rootScope, auth){
+.controller('MyProfileController',["$scope", "$rootScope","auth",function($scope, $rootScope, auth){
 	$scope.user=auth.currentUser;
 	$rootScope.$on('loginEvent', function(event){
 		$scope.user = auth.currentUser;

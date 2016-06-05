@@ -19,16 +19,13 @@ module.exports = {
 		})
 	},
 	find: function(id, callback){
-		User.findOne({id:id}).exec(function(err, usr){
+		User.findOne({
+			select:['id', 'nome', 'login', 'foto', 'descricao', 'nascimento'],
+			where:{id:id}
+		}).exec(function(err, usr){
 			if(err){
 				throw err;
 			}
-			if(!usr){
-				return; // TODO fail function
-			}
-			delete usr.password;
-			delete usr.createdAt;
-			delete usr.updatedAt;
 			callback(usr);
 		})
 	},

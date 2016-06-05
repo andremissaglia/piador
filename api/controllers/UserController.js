@@ -48,5 +48,15 @@ module.exports = {
 				user:usr
 			});
 		});
+	},
+	get: function(req, res){
+		var uid = req.body.user;
+		UserService.find(uid, function(usr){
+			if(!usr){
+				res.status(404);
+				return;
+			}
+			res.json(usr);
+		});
 	}
 }
