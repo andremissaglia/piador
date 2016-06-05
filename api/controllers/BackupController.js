@@ -39,6 +39,21 @@ module.exports = {
 					next();
 				})
 			}, 
+			//follows
+			function(){
+				Follow.find().exec(function(err, follows){
+					var list = [];
+					for (var i = 0; i < follows.length; i++) {
+						list.push({
+							id:follows[i].id,
+							follower:follows[i].follower,
+							follows:follows[i].follows,
+							timestamp:follows[i].timestamp,
+						});
+					}
+					output.follow = list;
+				})
+			}, 
 			//output
 			function(){
 				res.json(output);
