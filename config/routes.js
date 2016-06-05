@@ -34,6 +34,10 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+  '/search':{
+    controller: 'SearchController',
+    action: 'search'
   }
 
   /***************************************************************************

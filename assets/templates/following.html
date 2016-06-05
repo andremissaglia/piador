@@ -1,6 +1,8 @@
 <div class="main-container col-sm-12">
+	<h2>Você está seguindo:</h2>
 	<div class="list-group" ng-controller="FollowController">
 		<a class="list-group-item follow-line" ng-repeat="f in follows">
+			<img ng-src="{{f.pessoa.foto}}" class="thumbnail" />
 			{{f.pessoa.nome}}
 			<button class="btn btn-flat pull-xs-right" ng-click="follow(f.pessoa.id)" ng-show="f.excluido">Follow</button>
 			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(f.pessoa.id)" ng-hide="f.excluido">Unfollow</button>

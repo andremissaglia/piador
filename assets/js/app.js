@@ -4,12 +4,14 @@ angular.module('posts', []);
 angular.module('menu', []);
 angular.module('utils', []);
 angular.module('friends', []);
+angular.module('search', []);
 var myApp = angular.module('piadorApp', [
 	'account',
 	'posts',
 	'menu',
 	'utils',
 	'friends',
+	'search',
 	'ngRoute',
 ]);
 myApp.config(['$routeProvider', function ($routeProvider) {
@@ -41,6 +43,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		})
 		.when('/following', {
 			templateUrl: 'templates/following.html',
+		})
+		.when('/search/:termo', {
+			templateUrl: 'templates/search.html',
+			controller: 'SearchController',
 		})
 		.otherwise({ redirectTo: '/login' });
 }])

@@ -1,9 +1,13 @@
 <nav class="navbar navbar-light bg-faded" ng-hide="hideMenu">
   <div class="container">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav" ng-controller="MenuController">
       <li class="nav-item" ng-repeat="item in itens">
       	<a class="nav-link" href="{{item.path}}">{{item.title}}</a>
       </li>
     </ul>
+    <form class="form-inline pull-xs-right" ng-controller="SearchBarController">
+      <input class="form-control" type="text" placeholder="Pesquisar" ng-model="termo">
+      <button class="btn btn-outline" ng-click="search()">Pesquisar</button>
+    </form>
   </div>
 </nav>

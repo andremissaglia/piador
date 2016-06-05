@@ -66,6 +66,10 @@ main{
 	text-align: justify;
 	white-space: pre-line;
 }
+.thumbnail {
+	width:32px;
+	height:32px;
+}
 /*Friends*/
 .follow-line{
 	line-height: 2.5em;

@@ -43,7 +43,6 @@ angular.module('menu')
     return {
         restrict:'E',
         templateUrl:'templates/menu.html',
-        controller:'MenuController'
     }
 })
 .directive('footermenu', function(){

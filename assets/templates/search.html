@@ -1,0 +1,9 @@
+<div class="main-container col-sm-12">
+	<h2>Resultados da pesquisa:</h2>
+	<div class="list-group">
+		<a href="#/user/{{user.id}}" class="list-group-item follow-line" ng-repeat="user in users">
+			<img ng-src="{{user.foto}}" class="thumbnail" />
+			{{user.nome}}
+		</a>
+	</div>
+</div>

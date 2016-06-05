@@ -32,6 +32,22 @@ module.exports = {
 			callback(usr);
 		})
 	},
+	search: function(term, callback){
+		User.find({
+			select:['id', 'nome', 'foto'],
+			where: {
+				or: [
+					{nome: {'contains':term}},
+					{login: {'contains':term}},
+				]
+			}
+		}).exec(function(err, users){
+			if(err){
+				throw err;
+			}
+			callback(users)
+		});
+	},
 	update:function(user, senhaAtual, callback){
 		User.update({id:user.id, password:senhaAtual},user).exec(function(err, usr){
 			if(err){
