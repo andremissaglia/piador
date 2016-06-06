@@ -13,6 +13,8 @@ var myApp = angular.module('piadorApp', [
 	'friends',
 	'search',
 	'ngRoute',
+	'ui.bootstrap',
+	'ngAnimate'
 ]);
 myApp.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider

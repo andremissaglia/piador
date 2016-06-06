@@ -4,6 +4,6 @@
 		<img class="profileimage" ng-src="{{user.foto}}" />
 	</div>
 	<div><strong>Nome:</strong> {{user.nome}}</div>
-	<div><strong>Nascimento:</strong> {{user.nascimento}}</div>
+	<div><strong>Nascimento:</strong> {{user.nascimento | date : 'dd/MM/yyyy'}}</div>
 	<div class="description">{{user.descricao}}</div>
 </div>

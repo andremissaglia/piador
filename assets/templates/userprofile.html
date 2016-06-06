@@ -1,16 +1,19 @@
 <div class="card" ng-controller="ProfileController">
-	<div class="card-block">
+	<div class="card-block header-profile">
 		<div class="row card-text">
-			<div class="col-sm-12 col-md-4">
+			<div class="col-sm-12 col-md-4 image-area">
 				<img ng-src="{{user.foto}}" />
 			</div>
 			<div class="col-sm-12 col-md-8">
 				<h3 class="card-title">{{user.nome}}</h3>
 				<ul>
-					<li>{{user.nascimento}}</li>
+					<li>Data de nascimento: {{user.nascimento | date : 'dd/MM/yyyy'}}</li>
 				</ul>
-				<p class="card-title">{{user.descricao}}</p>
+				<p class="description">{{user.descricao}}</p>
 			</div>
+			<button class="btn btn-flat pull-xs-right" ng-click="follow(user.id)" ng-hide="amigo">Seguir</button>
+			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(user.id)" ng-show="amigo">Deixar de seguir</button>
+			<span class="pull-xs-right" ng-show="segue.timestamp">Você segue esta pessoa desde {{segue.timesestamp | date : 'dd/MM/yyyy'}}</span>
 		</div>
 	</div>
 </div>

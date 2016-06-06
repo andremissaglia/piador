@@ -1,11 +1,14 @@
-<div class="main-container col-sm-12">
+<div class="main-container col-sm-12" ng-controller="FollowController">
 	<h2>Você está seguindo:</h2>
-	<div class="list-group" ng-controller="FollowController">
-		<a class="list-group-item follow-line" ng-repeat="f in follows">
+	<p ng-hide="follows.length">Ninguém. Aproveite e faça novas amizades!</p>
+	<ul class="list-group" ng-show="follows.length">
+		<li class="list-group-item follow-line" ng-repeat="f in follows">
+			<a href="#/user/{{f.pessoa.id}}">
 			<img ng-src="{{f.pessoa.foto}}" class="thumbnail" />
 			{{f.pessoa.nome}}
-			<button class="btn btn-flat pull-xs-right" ng-click="follow(f.pessoa.id)" ng-show="f.excluido">Follow</button>
-			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(f.pessoa.id)" ng-hide="f.excluido">Unfollow</button>
-		</a>
-	</div>
+			</a>
+			<button class="btn btn-flat pull-xs-right" ng-click="follow(f.pessoa.id)" ng-show="f.excluido">Seguir</button>
+			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(f.pessoa.id)" ng-hide="f.excluido">Deixar de seguir</button>
+		</li>
+	</ul>
 </div>

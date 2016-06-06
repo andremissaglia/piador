@@ -1,12 +1,17 @@
 'use strict';
 
+function filter(user){
+	//faz parse na data antes de passar adiante
+	user.nascimento = new Date(user.nascimento)
+	return user;
+}
 angular.module('account')
 .factory('auth', function($http, $window, $rootScope){
 	var user = {};
 	user.token='';
 	if($window.localStorage.token && $window.localStorage.currentUser){
 		user.token = $window.localStorage.token;
-		user.currentUser = JSON.parse($window.localStorage.currentUser);
+		user.currentUser = filter(JSON.parse($window.localStorage.currentUser));
 	}
 	user.login = function(login, senha, success, fail){
 		$http.post('auth/login',{
@@ -14,10 +19,10 @@ angular.module('account')
 			senha:senha
 		}).then(function(response){
 			user.token = response.data.token;
-			user.currentUser = response.data.user;
+			user.currentUser = filter(response.data.user);
 
 			$window.localStorage.token = response.data.token;
-			$window.localStorage.currentUser = JSON.stringify(response.data.user);
+			$window.localStorage.currentUser = JSON.stringify(user.currentUser);
 
 			$rootScope.$emit('loginEvent');
 			success();
@@ -47,7 +52,7 @@ angular.module('account')
 		ApiService.post('user/get',{
 			user:id
 		}, function(response){
-			callback(response.data);
+			callback(filter(response.data));
 		}, function(response){});
 	};
 	model.save = function(user, senhaAtual, callback){

@@ -18,6 +18,8 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.min.css',
+  'bower_components/datepicker/css/datepicker.css',
+  'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
   'styles/**/*.css',
   'styles/style.css'
 ];
@@ -35,7 +37,9 @@ var jsFilesToInject = [
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/angular/angular.min.js',
   'bower_components/angular-route/angular-route.min.js',
+  'bower_components/angular-animate/angular-animate.min.js',
   'bower_components/bootstrap/dist/js/bootstrap.min.js',
+  'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.

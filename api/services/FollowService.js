@@ -9,7 +9,11 @@ module.exports={
 				callback();
 				return;
 			}
-			Follow.create({follower:follower, follows:follows})
+			Follow.create({
+				follower:follower,
+				follows:follows,
+				timestamp:new Date()
+			})
 			.exec(function(err, obj){
 				if(err){
 					throw err;
@@ -55,6 +59,18 @@ module.exports={
 				});
 			}
 			callback(list);
+		});
+	},
+	find:function(follower, follows, callback){
+		Follow.find({
+			where: {
+				follower:follower,
+				follows:follows
+			},
+			select:['id', 'timestamp']
+		})
+		.exec(function(err, follows){
+			callback(follows);
 		});
 	}
 }

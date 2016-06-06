@@ -9,7 +9,7 @@
     <fieldset class="form-group">
       <label for="form-nascimento" class="col-md-2 control-label">Nascimento</label>
       <div class="col-md-10">
-        <input type="date" class="form-control" id="form-nascimento" ng-model="form.nascimento">
+        <input type="text" class="form-control" id="form-nascimento" ng-model="form.nascimento" uib-datepicker-popup="dd/MM/yyyy" is-open="popup.opened" ng-required="true" close-text="Close" ng-click="openPopup()">
       </div>
     </fieldset>
     <fieldset class="form-group">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-danger pull-right" ng-click="delete()">Apagar minha conta</button>
+        <button class="btn btn-danger pull-right" ng-click="delete()">Apagar minha conta</button>
         <button type="submit" class="btn btn-default pull-right" ng-click="save()">Salvar</button>
     </div>
   </form>

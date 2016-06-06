@@ -32,38 +32,42 @@ angular.module('account')
 	});
 }])
 .controller('SignupController',["$scope", "$rootScope", "$location","usermodel", "auth", "MessagesService",function($scope, $rootScope, $location, usermodel, auth, MessagesService){
-	$scope.user = {
-		login:'',
-		nome:'',
-		nascimento:new Date(2000,0,1),
+	$scope.dateOptions = {
+		formatYear: 'yyyy',
+		maxDate: new Date(),
+		minDate: new Date(1900,0,1),
+		startingDay: 1
 	};
+	$scope.openPopup = function() {
+		$scope.popup.opened = true;
+	};
+	$scope.popup = {opened: false};
+
+	$scope.login = '';
+	$scope.nome='';
+	$scope.nascimento=null;
 	$scope.senha1 = '';
 	$scope.senha2 = '';
 	$scope.cadastrar = function(){
 		$scope.mensagem='';
-		var error = false;
+		var user = {
+			login:$scope.login,
+			nome:$scope.nome,
+			nascimento:$scope.nascimento,
+			password:$scope.senha1
+		};
 		if(!$scope.signupform.$valid){
 			MessagesService.error("Prencha todos os campos!");
-			error = true;
+			$scope.senha1 = '';
+			$scope.senha2 = '';
+			return;
 		} else if($scope.senha1 != $scope.senha2){
 			MessagesService.error("As senhas não coincidem");
-			error = true;
-		}
-		var user = $scope.user;
-		user.password = $scope.senha1;
-		//apaga a senha em toda tentativa
-		$scope.senha1 = '';
-		$scope.senha2 = '';
-
-		if(error){
+			$scope.senha1 = '';
+			$scope.senha2 = '';
 			return;
 		}
 		usermodel.new(user, function(){
-			//apaga formulario se cadastro teve sucesso
-			$scope.login = '';
-			$scope.nome = '';
-			$scope.nascimento = new Date(2000,0,1);
-			//redireciona
 			$location.path('/login');
 		}, function(){
 			MessagesService.error('Ocorreu um erro, tente novamente');
@@ -76,6 +80,17 @@ angular.module('account')
 	}
 }])
 .controller('SettingsController',["$scope", "auth", "$location", "usermodel",function($scope, auth, $location, usermodel){
+	$scope.dateOptions = {
+		formatYear: 'yyyy',
+		maxDate: new Date(),
+		minDate: new Date(1900,0,1),
+		startingDay: 1
+	};
+	$scope.openPopup = function() {
+		$scope.popup.opened = true;
+	};
+	$scope.popup = {opened: false};
+
 	$scope.form = {}
 	var resetForm = function(){
 		$scope.form = {
@@ -106,7 +121,7 @@ angular.module('account')
 		usermodel.save(user, $scope.form.senhaAtual, function(status){
 			if(status == 'success'){
 				resetForm();
-				$location.path('/posts');
+				$location.path('/dashboard');
 			} else{
 				$scope.form.senhaAtual = '';
 				alert("Erro ao atualizar perfil: sua senha está correta?"); //TODO exibir o erro decentemente
