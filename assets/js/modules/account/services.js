@@ -89,4 +89,16 @@ angular.module('account')
 		});
 	}
 	return model;
-});
+})
+.factory('SessionService',['auth', '$location', 'MessagesService', function(auth, $location, MessagesService){
+	return {
+		validate:function(event, next, current){
+			if(next.protected && !auth.logado()){
+				MessagesService.warning('Acesso apenas para usuários autenticados');
+				event.preventDefault();
+				$location.path("#/login");
+			}
+		}
+	};
+}])
+;

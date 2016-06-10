@@ -25,6 +25,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		.when('/logout', {
 			controller: 'LogoutController',
 			templateUrl: 'templates/logout.html',
+			protected: true,
 		})
 		.when('/signup', {
 			controller: 'SignupController',
@@ -33,25 +34,33 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		.when('/settings', {
 			controller: 'SettingsController',
 			templateUrl: 'templates/settings.html',
+			protected: true,
 		})
 		.when('/dashboard', {
 			templateUrl: 'templates/dashboard.html',
+			protected: true,
 		})
 		.when('/grupo', {
 			templateUrl: 'templates/grupo.html',
 		})
 		.when('/followers', {
 			templateUrl: 'templates/followers.html',
+			protected: true,
 		})
 		.when('/following', {
 			templateUrl: 'templates/following.html',
+			protected: true,
 		})
 		.when('/search/:termo', {
 			templateUrl: 'templates/search.html',
 			controller: 'SearchController',
+			protected: true,
 		})
 		.when('/user/:userid', {
 			templateUrl: 'templates/userprofile.html',
+			protected: true,
 		})
 		.otherwise({ redirectTo: '/login' });
-}])
+}]).run(function($rootScope, SessionService){
+	$rootScope.$on('$routeChangeStart', SessionService.validate);
+});

@@ -3,7 +3,12 @@
 angular.module('utils')
 .factory('MessagesService', function(){
 	var callbacks = [];
+	var tmp;
 	var publica = function(msg){
+		if(callbacks.length == 0){
+			tmp = msg;
+			return;
+		}
 		for (var i = callbacks.length - 1; i >= 0; i--) {
 			callbacks[i](msg);
 		}
@@ -29,6 +34,10 @@ angular.module('utils')
 		},
 		subscribe:function(callback){
 			callbacks.push(callback);
+			if(tmp){
+				callback(tmp);
+				tmp = undefined;
+			}
 		},
 		unsubscribe:function(callback){
 			var index = callbacks.indexOf(callback);
