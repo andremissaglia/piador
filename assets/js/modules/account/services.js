@@ -96,7 +96,10 @@ angular.module('account')
 			if(next.protected && !auth.logado()){
 				MessagesService.warning('Acesso apenas para usuários autenticados');
 				event.preventDefault();
-				$location.path("#/login");
+				$location.path("login");
+			} else if(next.$$route && next.$$route.originalPath == '/login' && auth.logado()){
+				event.preventDefault();
+				$location.path("dashboard");
 			}
 		}
 	};
