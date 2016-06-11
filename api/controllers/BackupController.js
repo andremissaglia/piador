@@ -52,6 +52,7 @@ module.exports = {
 						});
 					}
 					output.follow = list;
+					next();
 				})
 			}, 
 			//output
@@ -65,5 +66,47 @@ module.exports = {
 			}
 		};
 		next();
+	},
+	import: function(req, res){
+		if(req.method == "GET"){
+			res.view('importbackup', {layout:false});
+			return;
+		} else if(req.method != "POST"){
+			res.staus(404);
+			return;
+		}
+		var data = JSON.parse(req.body.import);
+		var nullCallback = function(err, x){
+			if(err){
+				throw err;
+			}
+		}
+		//apaga dados antigos
+		User.destroy().exec(nullCallback);
+		Tweet.destroy().exec(nullCallback);
+		Follow.destroy().exec(nullCallback);
+		//insere os novos
+		var list = [];
+		if(data.users){
+			list = [];
+			for (var i = 0; i < data.users.length; i++) {
+				list.push({
+					id:data.users[i].id,
+					nome:data.users[i].nome,
+					login:data.users[i].login,
+					password:data.users[i].password,
+					nascimento:data.users[i].birthday,
+					descricao:data.users[i].bio
+				});
+			}
+			User.create(list).exec(nullCallback);
+		}
+		if(data.tweets){
+			Tweet.create(data.tweets).exec(nullCallback);
+		}
+		if(data.follow){
+			Follow.create(data.follow).exec(nullCallback);
+		}
+		res.json('sucesso');
 	}
 }
