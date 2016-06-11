@@ -80,3 +80,6 @@ main{
 .follow-line{
 	line-height: 2.5em;
 }
+.list-group{
+	padding-bottom: 15px;
+}
