@@ -41,7 +41,7 @@ angular.module('friends')
 		getFriendship:function(uid1, uid2, callback){
 			ApiService.post('/follow/view',{
 				follower:uid1,
-				follows:uid1,
+				follows:uid2,
 			}, function(response){
 				if(response.data.length > 0){
 					callback(filter(response.data[0]));

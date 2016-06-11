@@ -3,8 +3,10 @@
 	<p ng-hide="followers.length">Ninguém. Aproveite e faça novas amizades!</p>
 	<ul class="list-group" ng-show="followers.length">
 		<li class="list-group-item follow-line" ng-repeat="f in followers">
+			<a href="#/user/{{f.pessoa.id}}">
 			<img ng-src="{{f.pessoa.foto}}" class="thumbnail" />
 			{{f.pessoa.nome}}
+			</a>
 			<button class="btn btn-flat pull-xs-right" ng-click="follow(f.pessoa.id)" ng-hide="f.reciproco">Seguir</button>
 			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(f.pessoa.id)" ng-show="f.reciproco">Deixar de seguir</button>
 		</li>

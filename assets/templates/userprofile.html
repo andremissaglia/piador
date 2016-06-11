@@ -10,10 +10,10 @@
 					<li>Data de nascimento: {{user.nascimento | date : 'dd/MM/yyyy'}}</li>
 				</ul>
 				<p class="description">{{user.descricao}}</p>
+				<button class="btn btn-flat pull-xs-right" ng-click="follow(user.id)" ng-hide="amigo">Seguir</button>
+				<button class="btn btn-flat pull-xs-right" ng-click="unfollow(user.id)" ng-show="amigo">Deixar de seguir</button>
+			<p class="pull-xs-right" ng-show="segue.timestamp">Você segue esta pessoa desde {{segue.timestamp | date : 'dd/MM/yyyy'}}</>
 			</div>
-			<button class="btn btn-flat pull-xs-right" ng-click="follow(user.id)" ng-hide="amigo">Seguir</button>
-			<button class="btn btn-flat pull-xs-right" ng-click="unfollow(user.id)" ng-show="amigo">Deixar de seguir</button>
-			<span class="pull-xs-right" ng-show="segue.timestamp">Você segue esta pessoa desde {{segue.timesestamp | date : 'dd/MM/yyyy'}}</span>
 		</div>
 	</div>
 </div>
