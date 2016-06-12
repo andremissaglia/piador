@@ -1,7 +1,12 @@
 <div class="card post">
 	<div class="card-block">
-			<h3 class="card-title">{{post.title}}</h3>
-			<time>{{post.timestamp}}</time>
-			<div ng-bind-html="getParsedPost()"><p></p></div>
+		<h3 class="card-title">{{post.title}}</h3>
+		<time>{{post.timestamp}}</time>
+		<div ng-bind-html="getParsedPost()"><p></p></div>
+	</div>
+	<div class="vote">
+		<span>0</span>
+		<button class="vote up"></button>
+		<button class="vote down"></button>
 	</div>
 </div>
