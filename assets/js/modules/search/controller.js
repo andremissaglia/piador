@@ -8,10 +8,13 @@ angular.module('search')
 		$scope.users = users;
 	});
 }])
-.controller('SearchBarController', ['$scope', '$location', function($scope, $location){
+.controller('SearchBarController', ['$scope', '$location','$rootScope', function($scope, $location, $rootScope){
 	$scope.termo = '';
 	$scope.search = function(){
 		if($scope.termo == '') return;
 		$location.path('/search/'+$scope.termo);
 	}
+	$rootScope.$on('logoutEvent', function(event){
+		$scope.termo = '';
+	});
 }]);;
