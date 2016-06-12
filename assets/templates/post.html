@@ -13,8 +13,8 @@
 		<div ng-bind-html="getParsedPost()" class="content"><p></p></div>
 	</div>
 	<div class="vote">
-		<span>0</span>
-		<button class="vote up"></button>
-		<button class="vote down"></button>
+		<span>{{post.votes}}</span>
+		<button class="vote up" ng-class="{voted:vote==1}" ng-click="upvote()"></button>
+		<button class="vote down" ng-class="{voted:vote==-1}" ng-click="downvote()"></button>
 	</div>
 </article>

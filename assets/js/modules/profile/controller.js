@@ -61,6 +61,8 @@ angular.module('profile', [])
 	});
 }])
 .controller('PostController', ['$scope', 'postService','$sce', function($scope, postService, $sce) {
+	$scope.post.votes = 0
+	$scope.vote=0;
 	$scope.getParsedPost = function(){
 		var text = $scope.post.text.replace(/</g,'&lt;');
 		text = text.replace(/>/g,'&gt;');
@@ -68,6 +70,30 @@ angular.module('profile', [])
 	}
 	if($scope.post.owner){
 		$scope.user = $scope.post.owner;
+	}
+	$scope.upvote = function(){
+		if($scope.vote == 1){
+			$scope.post.votes--;
+			$scope.vote = 0;
+		} else if($scope.vote == -1){
+			$scope.post.votes=$scope.post.votes+2;
+			$scope.vote = 1;
+		} else{
+			$scope.post.votes++;
+			$scope.vote = 1;
+		}
+	}
+	$scope.downvote = function(){
+		if($scope.vote == -1){
+			$scope.post.votes++;
+			$scope.vote = 0;
+		} else if($scope.vote == 1){
+			$scope.post.votes=$scope.post.votes-2;
+			$scope.vote = -1;
+		} else{
+			$scope.post.votes--;
+			$scope.vote = -1;
+		}
 	}
 }])
 .controller('NewPostController', ['$scope', 'postService', function($scope, postService){

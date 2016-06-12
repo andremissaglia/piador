@@ -114,8 +114,14 @@ main{
 .post .up {
 	background: url('/images/sticky-vote.png') no-repeat 0 0;
 }
+.post .up.voted{
+	background: url('/images/sticky-vote.png') no-repeat -42px 0;
+}
 .post .down {
 	background: url('/images/sticky-vote.png') no-repeat 0 -32px;
+}
+.post .down.voted {
+	background: url('/images/sticky-vote.png') no-repeat -42px -32px;
 }
 /*Friends*/
 .follow-line{
