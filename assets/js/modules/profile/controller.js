@@ -66,7 +66,7 @@ angular.module('profile', [])
 	$scope.getParsedPost = function(){
 		var text = $scope.post.text.replace(/</g,'&lt;');
 		text = text.replace(/>/g,'&gt;');
-		return postService.parsePost(text);
+		return $sce.trustAsHtml(postService.parsePost(text));
 	}
 }])
 .controller('NewPostController', ['$scope', 'postService', function($scope, postService){

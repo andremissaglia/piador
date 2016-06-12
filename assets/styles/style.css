@@ -52,7 +52,9 @@ main{
 	padding: 5px 20px 5px 20px;
 	margin: 5px 0px 5px 5px;
 }
-
+.post video {
+	width: 100%;
+}
 .navmenu {
 	margin-left: 5px;
 }

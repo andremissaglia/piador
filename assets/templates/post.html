@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card post">
 	<div class="card-block">
 			<h3 class="card-title">{{post.title}}</h3>
 			<time>{{post.timestamp}}</time>
-			<p ng-bind-html="getParsedPost()"></p>
+			<div ng-bind-html="getParsedPost()"><p></p></div>
 	</div>
 </div>
