@@ -62,6 +62,9 @@ main{
 	text-align: justify;
 	white-space: pre-line;
 }
+.miniprofile img {
+	width: 100%;
+}
 .groups li {
 	list-style: none;
 }

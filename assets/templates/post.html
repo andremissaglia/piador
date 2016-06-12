@@ -1,5 +1,6 @@
 <div class="card post">
 	<div class="card-block">
+		<div class="author">{{user.nome}}</div>
 		<h3 class="card-title">{{post.title}}</h3>
 		<time>{{post.timestamp}}</time>
 		<div ng-bind-html="getParsedPost()"><p></p></div>

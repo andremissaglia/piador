@@ -1,7 +1,7 @@
 module.exports = {
 	create: function(user, callback){
 		if(!user.foto){
-			user.foto = '/images/FCKXPMEFCZERDQD.jpg';
+			user.foto = 'images/passaros/'+(Math.floor(Math.random()*16)+1)+'.png';
 		}
 		User.create(user).exec(function(err, usr){
 			if(err){
@@ -73,5 +73,5 @@ module.exports = {
 			delete user.updatedAt;
 			return success(user);
 		});
-	},
+	}
 }

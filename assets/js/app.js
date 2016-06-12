@@ -59,6 +59,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		})
 		.when('/user/:userid', {
 			templateUrl: 'templates/userprofile.html',
+			controller: 'ProfileController',
 			protected: true,
 		})
 		.otherwise({ redirectTo: '/login' });

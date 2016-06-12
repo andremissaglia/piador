@@ -14,7 +14,7 @@ module.exports = {
 			required:true
 		},
 		timestamp: {
-			type: 'date'
+			type: 'datetime'
 		}
 	}
 };

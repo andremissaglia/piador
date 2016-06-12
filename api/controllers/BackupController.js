@@ -97,7 +97,7 @@ module.exports = {
 					password:data.users[i].password,
 					nascimento:data.users[i].birthday,
 					descricao:data.users[i].bio,
-					foto:'/images/FCKXPMEFCZERDQD.jpg'
+					foto:'images/passaros/'+(Math.floor(Math.random()*16)+1)+'.png'
 				});
 			}
 			User.create(list).exec(nullCallback);

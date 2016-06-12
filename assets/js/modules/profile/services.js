@@ -17,10 +17,9 @@ angular.module('profile')
 				}
 			}, function(response) {})
 		},
-		fetchUserPosts: function(callback){
-			ApiService.post('tweet/get',{
-				user:auth.currentUser.id
-			},function (response) {
+		fetchTimeline: function(callback){
+			ApiService.post('tweet/timeline',{},
+			function (response) {
 				callback(response.data);
 			},function (response) {});
 		},

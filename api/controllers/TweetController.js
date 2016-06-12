@@ -11,5 +11,12 @@ module.exports={
 		TweetService.listFromUser(uid, function(tweets) {
 			res.json(tweets);
 		})
+	},
+	timeline:function(req, res){
+		var uid = req.options.authPayload.user;
+		TweetService.getTimeline(uid, function(tweets) {
+			res.json(tweets);
+		})
 	}
+
 }

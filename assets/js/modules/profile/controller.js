@@ -43,18 +43,16 @@ angular.module('profile', [])
 		});
 	};
 }])
-//Mostra os posts do usuário logado
-.controller('UserPostsController', ['$scope', 'postService', function($scope, postService) {
+.controller('TimelineController', ['$scope', 'postService', function($scope, postService) {
 	$scope.posts = [];
 	var setPosts = function(){
-		postService.fetchUserPosts(function(tweets){
+		postService.fetchTimeline(function(tweets){
 			$scope.posts = tweets;
 		});
 	};
 	postService.setCallback(setPosts);
 	setPosts();
 }])
-//Mostra os posts
 .controller('PostsController', ['$scope', 'postService','$routeParams', function($scope, postService, $routeParams) {
 	var id = $routeParams.userid;
 	$scope.posts = [];
@@ -67,6 +65,9 @@ angular.module('profile', [])
 		var text = $scope.post.text.replace(/</g,'&lt;');
 		text = text.replace(/>/g,'&gt;');
 		return $sce.trustAsHtml(postService.parsePost(text));
+	}
+	if($scope.post.owner){
+		$scope.user = $scope.post.owner;
 	}
 }])
 .controller('NewPostController', ['$scope', 'postService', function($scope, postService){
