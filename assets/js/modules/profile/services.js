@@ -2,7 +2,7 @@
 
 angular.module('profile')
 
-.factory('postService', function(auth, ApiService){
+.factory('postService', function(auth, ApiService, $sce){
 	var callback  = undefined;
 	return {
 		new: function(title,post){
@@ -33,12 +33,19 @@ angular.module('profile')
 		},
 		setCallback: function(setCall){
 			callback = setCall;
+		},
+		parsePost:function(post){
+			//tema
+			post = post.replace(/#([a-zA-Z0-9]+)/g, function(m){
+				var tema = m.slice(1);
+				return '<a href="#/temas/'+tema+'">'+m+'</a>';
+			});
+			//mention
+			post = post.replace(/@([a-zA-Z0-9]+)/g, function(m){
+				var mention = m.slice(1);
+				return '<a href="#/user/'+mention+'">'+m+'</a>';
+			});
+			return post;
 		}
 	};
 });
-
-// "id": 7345,
-// "user": 1,
-// "title": "Titulo desse tweet",
-// "text": "Texto desse tweet",
-// "timestamp": "2016-05-10 10:23:45 TZ=-3"

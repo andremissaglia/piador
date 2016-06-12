@@ -96,7 +96,8 @@ module.exports = {
 					login:data.users[i].login,
 					password:data.users[i].password,
 					nascimento:data.users[i].birthday,
-					descricao:data.users[i].bio
+					descricao:data.users[i].bio,
+					foto:'/images/FCKXPMEFCZERDQD.jpg'
 				});
 			}
 			User.create(list).exec(nullCallback);

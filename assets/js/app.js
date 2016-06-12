@@ -14,7 +14,8 @@ var myApp = angular.module('piadorApp', [
 	'search',
 	'ngRoute',
 	'ui.bootstrap',
-	'ngAnimate'
+	'ngAnimate',
+	'ngSanitize'
 ]);
 myApp.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider

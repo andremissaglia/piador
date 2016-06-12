@@ -7,7 +7,7 @@ h1, .lema{
 	text-indent: 1em;
 }
 body{
-	background: url('/images/lindo-passaro-azul-no-galho.jpg');
+	background: url('/images/lindo-passaro-azul-no-galho.jpg') fixed;
 	padding-bottom: 54px;
 }
 main{
@@ -71,6 +71,9 @@ main{
 .miniprofile .description {
 	text-align: justify;
 	white-space: pre-line;
+}
+.groups li {
+	list-style: none;
 }
 .thumbnail {
 	width:32px;

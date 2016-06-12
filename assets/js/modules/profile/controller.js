@@ -2,10 +2,18 @@
 
 angular.module('profile', [])
 
+.directive('grupos', function(){
+    return {
+        restrict:'E',
+        templateUrl:'templates/grupos.html',
+        controller:'GruposController'
+    }
+})
 .directive('post', function(){
     return {
         restrict:'E',
-        templateUrl:'templates/post.html'
+        templateUrl:'templates/post.html',
+        controller:'PostController'
     }
 })
 .controller('ProfileController', ['$scope', '$routeParams', 'usermodel', 'FriendService', 'auth', function($scope, $routeParams, usermodel, FriendService, auth){
@@ -54,6 +62,13 @@ angular.module('profile', [])
 		$scope.posts = tweets;
 	});
 }])
+.controller('PostController', ['$scope', 'postService','$sce', function($scope, postService, $sce) {
+	$scope.getParsedPost = function(){
+		var text = $scope.post.text.replace(/</g,'&lt;');
+		text = text.replace(/>/g,'&gt;');
+		return postService.parsePost(text);
+	}
+}])
 .controller('NewPostController', ['$scope', 'postService', function($scope, postService){
 	$scope.title = '';
 	$scope.message = '';
@@ -63,4 +78,6 @@ angular.module('profile', [])
 		$scope.title = '';
 		$scope.message = '';
 	};
+}])
+.controller('GruposController', ['$scope', function($scope){
 }]);
