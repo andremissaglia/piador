@@ -78,6 +78,22 @@ main{
 	padding: 5px 20px 5px 20px;
 	margin: 5px 0px 5px 5px;
 }
+.post .author img {
+	width: 64px;
+	height: 64px;
+}
+.post .author a:first-child{
+	text-decoration: none;
+}
+.post time {
+	float: right;
+	color: #999;
+	font-size: 0.6em;
+}
+.post .content{
+	clear: both;
+	text-align: justify;
+}
 .post video {
 	width: 100%;
 }
