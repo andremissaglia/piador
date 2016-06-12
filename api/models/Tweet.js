@@ -16,6 +16,9 @@ module.exports = {
 		},
 		timestamp: {
 			type: 'datetime'
+		},
+		reaction: {
+			type: 'integer'
 		}
 	}
 };

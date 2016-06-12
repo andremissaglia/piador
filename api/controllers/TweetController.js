@@ -17,6 +17,9 @@ module.exports={
 		TweetService.getTimeline(uid, function(tweets) {
 			res.json(tweets);
 		})
+	},
+	react:function(req, res){
+
 	}
 
 }
