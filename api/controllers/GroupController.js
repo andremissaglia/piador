@@ -23,5 +23,11 @@ module.exports={
 		GroupService.destroy(gid,function(){
 			res.json({status:'success'});
 		});	
+	},
+	getUsers:function(req, res){
+		var gid = req.body.id;
+		GroupUserService.getUsers(gid, function(users){
+			res.json(users);
+		})
 	}
 }

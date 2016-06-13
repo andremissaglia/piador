@@ -16,5 +16,17 @@ module.exports = {
 				callback({status:'success'});
 			}
 		})
+	},
+	getUsers:function(gid, callback){
+		GroupUser.find({groupid:gid})
+		.populate('userid', {
+			select:['id', 'nome']
+		}).exec(function(err, users){
+			if(err){
+				throw err;
+			}
+			console.log(users);
+			callback(users);
+		})
 	}
 }

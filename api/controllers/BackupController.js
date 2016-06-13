@@ -169,17 +169,23 @@ module.exports = {
 				for (var j = pessoa.list.length - 1; j >= 0; j--) {
 					var group = pessoa.list[j];
 					Group.create({
-							dono:pessoa.id,
-							nome:group.nome,
-							id:group.relativeId
-						}).exec(function(err, grupo){
+						dono:pessoa.id,
+						nome:group.nome,
+						id:group.relativeId
+					}).exec(function(err, grupo){
 						if(err){
 							throw err;
 						}
-						for (var k = group.users.length - 1; k >= 0; k--) {
-							GroupUserService.associar(group.users[i],group.id, function(status){});
-						}
 					});
+					var membros = []
+					for (var k = group.users.length - 1; k >= 0; k--) {
+						membros.push({userid:group.users[k], groupid:group.relativeId});
+					}
+					GroupUser.create(membros).exec(function(err, val){
+						if(err){
+							throw err;
+						}
+					})
 				}
 			}
 		}
