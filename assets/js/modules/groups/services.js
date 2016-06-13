@@ -2,12 +2,28 @@
  
 angular.module('groups')
 .factory('GroupService', function(auth, ApiService){
+	var listCallback = undefined;
 	return {
-		list:function(callback){
-			ApiService.post('/group/list',{},
-			function(response){
-				callback(response.data);
-			}, function(response){})
+		list:function(){
+			ApiService.easypost('/group/list',{},listCallback);
+		},
+		new:function(nome){
+			var self = this;
+			ApiService.easypost('/group/new',{
+				nome:nome
+			},function(status){
+				if(listCallback){
+					self.list();
+				}
+			});
+		},
+		get:function(gid, callback){
+			ApiService.easypost('/group/get',{
+				id:gid
+			},callback);
+		},
+		setCallback:function(c){
+			listCallback = c;
 		}
 	}
 })

@@ -64,6 +64,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			controller: 'ProfileController',
 			protected: true,
 		})
+		.when('/grupos/:groupid', {
+			templateUrl: 'templates/grouphome.html',
+			controller: 'GroupController',
+			protected: true,
+		})
 		.otherwise({ redirectTo: '/login' });
 }]).run(function($rootScope, SessionService){
 	$rootScope.$on('$routeChangeStart', SessionService.validate);

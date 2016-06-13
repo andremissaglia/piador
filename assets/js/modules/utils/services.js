@@ -63,6 +63,11 @@ angular.module('utils')
 				}
 				fail(response);
 			});
+		},
+		easypost:function(path, data, callback){
+			this.post(path,data, function(response){
+				callback(response.data);
+			}, function(response){});
 		}
 	};
 });

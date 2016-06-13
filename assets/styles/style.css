@@ -130,3 +130,7 @@ main{
 .list-group{
 	padding-bottom: 15px;
 }
+/*Group*/
+.groupinfo nav li{
+	list-style: none;
+}

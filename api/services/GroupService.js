@@ -22,5 +22,18 @@ module.exports={
 			}
 			callback(groups);
 		});
+	},
+	get:function(gid, callback){
+		Group.findOne({
+			select:['id','nome', 'dono'],
+			where:{
+				id:gid
+			}
+		}).exec(function(err, group){
+			if(err){
+				throw err;
+			}
+			callback(group);
+		});	
 	}
 }

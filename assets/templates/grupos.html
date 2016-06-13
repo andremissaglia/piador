@@ -6,5 +6,13 @@
 				<a href="#/grupos/{{grupo.id}}">@{{grupo.nome}}</a>
 			</li>
 		</ul>
+		<h4> Adicionar </h4>
+		<messages></messages>
+		<form ng-controller="NewGroupController">
+			<div class="form-group">
+				<input class="form-control" type="text" placeholder="Novo Grupo" ng-model="nome">
+			</div>
+			<button class="btn btn-primary" ng-click="add()">Novo</button>
+		</form>
 	</div>
 </div>

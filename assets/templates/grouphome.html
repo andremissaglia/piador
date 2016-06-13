@@ -1,0 +1,19 @@
+<div class="col-sm-4">
+	<div class="card groupinfo">
+		<div class="card-block" ng-controller="GroupAdminController">
+			<h2 class="card-title">{{group.nome}}</h2>
+			<h3 class="card-title">Membros</h3>
+			<nav>
+				<ul>
+					<li><a href="#">@fulano</a></li>
+				</ul>
+			</nav>
+			<h3 class="card-title">Administrar</h3>
+			<button class="btn btn-danger" ng-click="delete()">Apagar grupo</button>
+		</div>
+	</div>
+	<grupos></grupos>
+</div>
+
+<div class="col-sm-8">
+</div>
