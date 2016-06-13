@@ -5,7 +5,9 @@
 			<h3 class="card-title">Membros</h3>
 			<nav>
 				<ul>
-					<li><a href="#">@fulano</a></li>
+					<li ng-repeat="membro in members">
+						<a href="/user/{{membro.id}}">@{{membro.login}}</a>
+					</li>
 				</ul>
 			</nav>
 			<h3 class="card-title">Administrar</h3>

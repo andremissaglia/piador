@@ -25,8 +25,14 @@ module.exports = {
 			if(err){
 				throw err;
 			}
-			console.log(users);
-			callback(users);
+			var list=[];
+			for (var i = users.length - 1; i >= 0; i--) {
+				list.push({
+					id:users[i].userid.id,
+					login:users[i].userid.login,
+				});
+			}
+			callback(list);
 		})
 	}
 }

@@ -22,6 +22,11 @@ angular.module('groups')
 				id:gid
 			},callback);
 		},
+		getUsers:function(gid, callback){
+			ApiService.easypost('/group/getUsers',{
+				id:gid
+			},callback);
+		},
 		destroy:function(gid, callback){
 			ApiService.easypost('/group/destroy',{
 				id:gid

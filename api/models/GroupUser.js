@@ -1,10 +1,10 @@
 module.exports = {
 	attributes: {
 		userid: {
-			model:'user'
+			model:'User'
 		},
 		groupid: {
-			model:'group'
+			model:'Group'
 		}
 	}
 };

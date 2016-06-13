@@ -30,6 +30,7 @@ angular.module('groups')
 }])
 .controller('GroupController', ['$scope', '$routeParams','GroupService', function($scope, $routeParams, GroupService){
 	var id = $routeParams.groupid;
+	$scope.groupid = id;
 	GroupService.get(id, function(group){
 		$scope.group = group;
 	})
@@ -40,4 +41,7 @@ angular.module('groups')
 			$location.path('/dashboard');
 		});
 	}
+	GroupService.getUsers($scope.groupid, function(members){
+		$scope.members = members;
+	});
 }]);
