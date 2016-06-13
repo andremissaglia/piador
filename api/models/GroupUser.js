@@ -1,15 +1,10 @@
 module.exports = {
 	attributes: {
-		id: {
-			type: 'integer',
-			primaryKey: true,
-			autoIncrement: true
-		},
 		userid: {
-			type: 'integer'
+			model:'user'
 		},
 		groupid: {
-			type: 'integer'
+			model:'group'
 		}
 	}
 };

@@ -35,5 +35,13 @@ module.exports={
 			}
 			callback(group);
 		});	
+	},
+	destroy:function(gid, callback){
+		Group.destroy({id:gid}).exec(function(err, group){
+			if(err){
+				throw err;
+			}
+			callback();
+		});	
 	}
 }

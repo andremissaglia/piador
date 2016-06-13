@@ -13,10 +13,15 @@ module.exports={
 		});
 	},
 	get:function(req, res){
-		var uid = req.options.authPayload.user;
 		var gid = req.body.id;
 		GroupService.get(gid,function(group){
 			res.json(group);
 		});
+	},
+	destroy:function(req, res){
+		var gid = req.body.id;
+		GroupService.destroy(gid,function(){
+			res.json({status:'success'});
+		});	
 	}
 }

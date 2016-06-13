@@ -10,6 +10,10 @@ module.exports = {
 		},
 		dono: {
 			type: 'integer'
+		},
+		users:{
+			collection: 'GroupUser',
+			via:'userid'
 		}
 	}
 };

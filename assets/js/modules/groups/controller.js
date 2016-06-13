@@ -34,8 +34,10 @@ angular.module('groups')
 		$scope.group = group;
 	})
 }])
-.controller('GroupAdminController', ['$scope', 'GroupService', function($scope, GroupService){
+.controller('GroupAdminController', ['$scope', 'GroupService', '$location', function($scope, GroupService, $location){
 	$scope.delete = function(){
-		alert();
+		GroupService.destroy($scope.group.id, function(status){
+			$location.path('/dashboard');
+		});
 	}
 }]);
