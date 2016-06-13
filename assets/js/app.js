@@ -5,6 +5,7 @@ angular.module('menu', []);
 angular.module('utils', []);
 angular.module('friends', []);
 angular.module('search', []);
+angular.module('groups', []);
 var myApp = angular.module('piadorApp', [
 	'account',
 	'profile',
@@ -12,6 +13,7 @@ var myApp = angular.module('piadorApp', [
 	'utils',
 	'friends',
 	'search',
+	'groups',
 	'ngRoute',
 	'ui.bootstrap',
 	'ngAnimate',

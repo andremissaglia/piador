@@ -9,7 +9,7 @@ module.exports = {
 			type: 'string'
 		},
 		dono: {
-			type: 'string'
+			type: 'integer'
 		}
 	}
 };

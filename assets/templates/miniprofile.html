@@ -1,9 +1,11 @@
-<div class="card-block miniprofile">
-	<h3 class="card-title">Profile</h3>
-	<div>
-		<img class="profileimage" ng-src="{{user.foto}}" />
+<div class="card">
+	<div class="card-block miniprofile">
+		<h3 class="card-title">Profile</h3>
+		<div>
+			<img class="profileimage" ng-src="{{user.foto}}" />
+		</div>
+		<div><strong>Nome:</strong> {{user.nome}}</div>
+		<div><strong>Nascimento:</strong> {{user.nascimento | date : 'dd/MM/yyyy'}}</div>
+		<div class="description">{{user.descricao}}</div>
 	</div>
-	<div><strong>Nome:</strong> {{user.nome}}</div>
-	<div><strong>Nascimento:</strong> {{user.nascimento | date : 'dd/MM/yyyy'}}</div>
-	<div class="description">{{user.descricao}}</div>
 </div>

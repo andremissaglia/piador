@@ -43,6 +43,9 @@ module.exports.policies = {
   },
   SearchController:{
     '*':'sessionAuth'
+  },
+  GroupController:{
+    '*':'sessionAuth'
   }
 
   /***************************************************************************

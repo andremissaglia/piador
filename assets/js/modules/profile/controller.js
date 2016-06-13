@@ -2,13 +2,6 @@
 
 angular.module('profile', [])
 
-.directive('grupos', function(){
-    return {
-        restrict:'E',
-        templateUrl:'templates/grupos.html',
-        controller:'GruposController'
-    }
-})
 .directive('post', function(){
     return {
         restrict:'E',
@@ -105,6 +98,4 @@ angular.module('profile', [])
 		$scope.title = '';
 		$scope.message = '';
 	};
-}])
-.controller('GruposController', ['$scope', function($scope){
 }]);

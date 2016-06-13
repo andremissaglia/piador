@@ -5,10 +5,10 @@ module.exports = {
 			primaryKey: true,
 			autoIncrement: true
 		},
-		userId: {
+		userid: {
 			type: 'integer'
 		},
-		groupId: {
+		groupid: {
 			type: 'integer'
 		}
 	}

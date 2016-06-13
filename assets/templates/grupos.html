@@ -1,6 +1,10 @@
-<div class="card-block groups">
-	<h3 class="card-title">Meus grupos</h3>
-	<ul>
-		<a href="#/grupos/1">@familia</a>
-	</ul>
+<div class="card">
+	<div class="card-block groups">
+		<h3 class="card-title">Meus grupos</h3>
+		<ul>
+			<li ng-repeat="grupo in grupos">
+				<a href="#/grupos/{{grupo.id}}">@{{grupo.nome}}</a>
+			</li>
+		</ul>
+	</div>
 </div>
