@@ -2,15 +2,25 @@
 	<div class="card groupinfo">
 		<div class="card-block" ng-controller="GroupAdminController">
 			<h2 class="card-title">{{group.nome}}</h2>
-			<h3 class="card-title">Membros</h3>
+			<h3>Membros</h3>
 			<nav>
 				<ul>
 					<li ng-repeat="membro in members">
+						<button type="button" class="close" aria-label="Close" ng-click="remove(membro.id)">
+							<span aria-hidden="true">&times;</span>
+						</button>
 						<a href="/user/{{membro.id}}">@{{membro.login}}</a>
 					</li>
 				</ul>
 			</nav>
-			<h3 class="card-title">Administrar</h3>
+			<h4 class="card-title">Adicionar membro</h4>
+			<form ng-controller="AddMemberController">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="Usuário" ng-model="username">
+				</div>
+				<button class="btn btn-primary" ng-click="add()">Novo</button>
+			</form>
+			<h4 class="card-title">Apagar Grupo</h4>
 			<button class="btn btn-danger" ng-click="delete()">Apagar grupo</button>
 		</div>
 	</div>

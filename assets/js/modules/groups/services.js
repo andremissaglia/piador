@@ -32,6 +32,18 @@ angular.module('groups')
 				id:gid
 			},callback);
 		},
+		associate:function(gid, username, callback){
+			ApiService.easypost('/group/associar', {
+				gid:gid,
+				username:username
+			}, callback);
+		},
+		desassociate:function(gid, uid, callback){
+			ApiService.easypost('/group/desassociar', {
+				gid:gid,
+				uid:uid
+			}, callback);
+		},
 		setCallback:function(c){
 			listCallback = c;
 		}

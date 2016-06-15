@@ -44,4 +44,23 @@ angular.module('groups')
 	GroupService.getUsers($scope.groupid, function(members){
 		$scope.members = members;
 	});
+	$scope.remove = function(uid){
+		GroupService.desassociate($scope.groupid,uid, function(){
+			for (var i = $scope.members.length - 1; i >= 0; i--) {
+				if($scope.members[i].id == uid){
+					$scope.members.splice(i,1);
+					break;
+				}
+			}
+		})
+	}
+}])
+.controller('AddMemberController', ['$scope', 'GroupService', function($scope, GroupService){
+	$scope.username = '';
+	$scope.add = function(){
+		GroupService.associate($scope.groupid, $scope.username, function(status){
+			$scope.members.push(status.user);
+		});
+		$scope.username='';
+	}
 }]);

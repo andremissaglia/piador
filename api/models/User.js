@@ -23,7 +23,6 @@ module.exports = {
 			type:'date'
 		},
 		password: {
-			// Sem segurança nenhuma porque quero evitar a fadiga
 			type:'string' 
 		},
 	}

@@ -27,7 +27,18 @@ module.exports = {
 				throw err;
 			}
 			callback(usr);
-		})
+		});
+	},
+	findByUsername: function(username, callback){
+		User.findOne({
+			select:['id', 'nome', 'login', 'foto', 'descricao', 'nascimento'],
+			where:{login:username}
+		}).exec(function(err, usr){
+			if(err){
+				throw err;
+			}
+			callback(usr);
+		});
 	},
 	search: function(term, callback){
 		User.find({
