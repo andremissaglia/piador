@@ -4,7 +4,7 @@ angular.module('account')
 .directive('miniprofile', function(){
     return {
         restrict:'E',
-        templateUrl:'templates/miniprofile.html',
+        templateUrl:'templates/user/miniprofile.html',
         controller: 'MyProfileController'
     }
 })

@@ -19,6 +19,10 @@ module.exports = {
 		},
 		reaction: {
 			type: 'integer'
+		},
+		themes: {
+			collection: 'Theme',
+			via: 'posts'
 		}
 	}
 };

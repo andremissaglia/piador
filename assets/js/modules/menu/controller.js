@@ -49,7 +49,7 @@ angular.module('menu')
 .directive('footermenu', function(){
     return {
         restrict:'E',
-        templateUrl:'templates/footer.html',
+        templateUrl:'templates/public/footer.html',
         controller:'FooterController'
     }
 });
