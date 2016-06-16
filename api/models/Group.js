@@ -3,13 +3,16 @@ module.exports = {
 		id: {
 			type: 'integer',
 			primaryKey: true,
-			autoIncrement:true
+			autoIncrement:true,
+			required:true
 		},
 		nome: {
-			type: 'string'
+			type: 'string',
+			required:true
 		},
 		dono: {
-			type: 'integer'
+			model: 'User',
+			required:true
 		},
 		users:{
 			collection: 'GroupUser',

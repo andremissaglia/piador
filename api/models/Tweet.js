@@ -3,10 +3,12 @@ module.exports = {
 		id: {
 			type: 'integer',
 			primaryKey: true,
-			autoIncrement:true
+			autoIncrement:true,
+			required:true
 		},
 		user: {
-			type: 'integer'
+			model: 'User',
+			required:true
 		},
 		title: {
 			type: 'string'

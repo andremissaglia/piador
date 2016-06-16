@@ -3,7 +3,8 @@ module.exports = {
 		id: {
 			type: 'integer',
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			required:true
 		},
 		follower: {
 			model: 'User',

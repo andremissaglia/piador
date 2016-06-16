@@ -1,17 +1,19 @@
 module.exports = {
-        attributes: {
-                tweet: {
-                        type: 'integer',
-                        primaryKey: true
-                },
-                user: {
-                        type: 'integer'
-                },
-                reaction: {
-                        type: 'boolean'
-                },
-                timestamp: {
-                        type: 'date'
-                }
-        }
+	attributes: {
+		tweet: {
+			model: 'Tweet',
+			required:true
+		},
+		user: {
+			model: 'User',
+			required:true
+		},
+		reaction: {
+			type: 'boolean', // true = positivo, false = negativo
+			required:true
+		},
+		timestamp: {
+			type: 'datetime'
+		}
+	}
 };

@@ -4,14 +4,16 @@ module.exports = {
 			type:'integer',
 			primaryKey:true,
 			unique:true,
-			autoIncrement:true
+			autoIncrement:true,
+			required:true
 		},
 		nome: {
 			type:'string'
 		},
 		login: {
 			type:'string',
-			unique:true
+			unique:true,
+			required:true
 		},
 		foto: {
 			type:'string'
