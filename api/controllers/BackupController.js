@@ -152,7 +152,7 @@ module.exports = {
 					password:data.users[i].password,
 					nascimento:data.users[i].birthday,
 					descricao:data.users[i].bio,
-					foto:'images/passaros/'+(Math.floor(Math.random()*16)+1)+'.png'
+					foto:'images/passaros/'+(Math.floor(Math.random()*15)+1)+'.png'
 				});
 			}
 			User.create(list).exec(nullCallback);
@@ -164,28 +164,34 @@ module.exports = {
 			Follow.create(data.follow).exec(nullCallback);
 		}
 		if(data.group){
-			for (var i = data.group.length - 1; i >= 0; i--) {
-				var pessoa = data.group[i];
-				for (var j = pessoa.list.length - 1; j >= 0; j--) {
-					var group = pessoa.list[j];
-					Group.create({
-						dono:pessoa.id,
-						nome:group.nome,
-						id:group.relativeId
-					}).exec(function(err, grupo){
-						if(err){
-							throw err;
-						}
-					});
-					var membros = []
-					for (var k = group.users.length - 1; k >= 0; k--) {
-						membros.push({userid:group.users[k], groupid:group.relativeId});
+			var associar = function(users, gid){
+				var membros = []
+				for (var i = users.length - 1; i >= 0; i--) {
+					membros.push({userid:users[i], groupid:gid});
+				}
+				GroupUser.create(membros).exec(function(err, val){
+					if(err){
+						throw err;
 					}
-					GroupUser.create(membros).exec(function(err, val){
-						if(err){
-							throw err;
-						}
-					})
+				});
+
+			};
+			var criarGrupo = function(dono_id, grupo){
+				Group.create({
+					dono:dono_id,
+					nome:grupo.nome,
+					id:grupo.relativeId
+				}).exec(function(err, g){
+					if(err){
+						throw err;
+					}
+					associar(grupo.users, grupo.relativeId);
+				});
+			};
+			for (var i = data.group.length - 1; i >= 0; i--) {
+				var gruposDono = data.group[i];
+				for (var j = gruposDono.list.length - 1; j >= 0; j--) {
+					criarGrupo(gruposDono.id, gruposDono.list[j]);					
 				}
 			}
 		}
