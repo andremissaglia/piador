@@ -19,7 +19,12 @@ module.exports={
 		})
 	},
 	react:function(req, res){
-
+		var uid = req.options.authPayload.user;
+		var tweet = req.body.tweet;
+		var value = req.body.value;
+		ReactionService.vote(uid, tweet, value, function(){
+			res.json({status:'success'});
+		});
 	}
 
 }

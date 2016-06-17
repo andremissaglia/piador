@@ -9,7 +9,7 @@ module.exports = {
 			required:true
 		},
 		reaction: {
-			type: 'boolean', // true = positivo, false = negativo
+			type: 'integer',
 			required:true
 		},
 		timestamp: {

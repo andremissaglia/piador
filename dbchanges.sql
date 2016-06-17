@@ -21,3 +21,29 @@ ALTER TABLE follow
     FOREIGN KEY (follows)
     REFERENCES public.user(id)
     ON DELETE CASCADE;
+ALTER TABLE reactions 
+  ADD CONSTRAINT key_reaction_user_tweet 
+    UNIQUE (user, tweet),
+  ADD CONSTRAINT fk_reaction_tweet 
+    FOREIGN KEY (tweet)
+    REFERENCES public.tweet(id)
+    ON DELETE CASCADE,
+  ADD CONSTRAINT fk_follow_user 
+    FOREIGN KEY (user)
+    REFERENCES public.user(id)
+    ON DELETE CASCADE;
+CREATE OR REPLACE FUNCTION update_reactions ()
+  RETURNS TRIGGER AS $$
+  BEGIN
+    UPDATE tweet
+      SET reaction = 
+        reaction + 
+        (CASE WHEN TG_OP = 'DELETE' THEN 0 ELSE NEW.reaction END) -
+        (CASE WHEN TG_OP = 'INSERT' THEN 0 ELSE OLD.reaction END)
+      WHERE id = (CASE WHEN TG_OP = 'DELETE' THEN OLD.tweet ELSE NEW.tweet END);
+    RETURN NEW;
+  END;
+  $$ LANGUAGE plpgsql;
+CREATE TRIGGER update_reactions_trigger 
+  AFTER INSERT OR UPDATE OR DELETE ON reactions
+  FOR EACH ROW EXECUTE PROCEDURE update_reactions();

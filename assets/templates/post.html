@@ -14,7 +14,7 @@
 	</div>
 	<div class="vote">
 		<span>{{post.votes}}</span>
-		<button class="vote up" ng-class="{voted:vote==1}" ng-click="upvote()"></button>
-		<button class="vote down" ng-class="{voted:vote==-1}" ng-click="downvote()"></button>
+		<button class="vote up" ng-class="{voted:post.user_vote==1}" ng-click="upvote()"></button>
+		<button class="vote down" ng-class="{voted:post.user_vote==-1}" ng-click="downvote()"></button>
 	</div>
 </article>

@@ -3,7 +3,7 @@
 angular.module('profile')
 
 .factory('postService', function(auth, ApiService){
-	var callback  = undefined;
+	var callback  = undefined; //monitora novos posts
 	return {
 		new: function(title,post){
 			ApiService.post('tweet/tweet',{
@@ -18,20 +18,21 @@ angular.module('profile')
 			}, function(response) {})
 		},
 		fetchTimeline: function(callback){
-			ApiService.post('tweet/timeline',{},
-			function (response) {
-				callback(response.data);
-			},function (response) {});
+			ApiService.easypost('tweet/timeline',{},callback);
 		},
 		fetchPosts: function(uid, callback){
-			ApiService.post('tweet/get',{
+			ApiService.easypost('tweet/get',{
 				user:uid
-			},function (response) {
-				callback(response.data);
-			},function (response) {});
+			},callback);
 		},
 		setCallback: function(setCall){
 			callback = setCall;
+		},
+		vote:function(post, value){
+			ApiService.easypost('tweet/react', {
+				tweet:post,
+				value:value
+			}, function(response){});
 		},
 		parsePost:function(post){
 			//tema
