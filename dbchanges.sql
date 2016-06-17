@@ -23,13 +23,13 @@ ALTER TABLE follow
     ON DELETE CASCADE;
 ALTER TABLE reactions 
   ADD CONSTRAINT key_reaction_user_tweet 
-    UNIQUE (user, tweet),
+    UNIQUE ("user", tweet),
   ADD CONSTRAINT fk_reaction_tweet 
     FOREIGN KEY (tweet)
     REFERENCES public.tweet(id)
     ON DELETE CASCADE,
   ADD CONSTRAINT fk_follow_user 
-    FOREIGN KEY (user)
+    FOREIGN KEY ("user")
     REFERENCES public.user(id)
     ON DELETE CASCADE;
 CREATE OR REPLACE FUNCTION update_reactions ()
