@@ -84,6 +84,7 @@ main{
 }
 .post .author a:first-child{
 	text-decoration: none;
+	clear: both;
 }
 .post time {
 	float: right;
@@ -91,7 +92,6 @@ main{
 	font-size: 0.6em;
 }
 .post .content{
-	clear: both;
 	text-align: justify;
 }
 .post video {

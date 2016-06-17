@@ -1,5 +1,6 @@
 <article class="card post">
 	<div class="card-block">
+		<time>{{post.timestamp | date : 'dd/MM/yyyy hh:ss'}}</time>
 		<div class="author">
 			<a href="#/user/{{user.id}}">
 				<img ng-src="{{user.foto}}">
@@ -9,12 +10,11 @@
 			</a>
 		</div>
 		<h3 class="card-title">{{post.title}}</h3>
-		<time>{{post.timestamp | date : 'dd/MM/yyyy hh:ss'}}</time>
 		<div ng-bind-html="getParsedPost()" class="content"><p></p></div>
-	</div>
-	<div class="vote">
-		<span>{{post.votes}}</span>
-		<button class="vote up" ng-class="{voted:post.user_vote==1}" ng-click="upvote()"></button>
-		<button class="vote down" ng-class="{voted:post.user_vote==-1}" ng-click="downvote()"></button>
+		<div class="vote">
+			<span>{{post.votes}}</span>
+			<button class="vote up" ng-class="{voted:post.user_vote==1}" ng-click="upvote()"></button>
+			<button class="vote down" ng-class="{voted:post.user_vote==-1}" ng-click="downvote()"></button>
+		</div>
 	</div>
 </article>
