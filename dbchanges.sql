@@ -28,7 +28,16 @@ ALTER TABLE reactions
     FOREIGN KEY (tweet)
     REFERENCES public.tweet(id)
     ON DELETE CASCADE,
-  ADD CONSTRAINT fk_follow_user 
+  ADD CONSTRAINT fk_reaction_user 
+    FOREIGN KEY ("user")
+    REFERENCES public.user(id)
+    ON DELETE CASCADE;
+ALTER TABLE share 
+  ADD CONSTRAINT fk_share_tweet 
+    FOREIGN KEY (tweet)
+    REFERENCES public.tweet(id)
+    ON DELETE CASCADE,
+  ADD CONSTRAINT fk_share_user 
     FOREIGN KEY ("user")
     REFERENCES public.user(id)
     ON DELETE CASCADE;

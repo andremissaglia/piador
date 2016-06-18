@@ -25,6 +25,13 @@ module.exports={
 		ReactionService.vote(uid, tweet, value, function(){
 			res.json({status:'success'});
 		});
+	},
+	share:function(req, res){
+		var uid = req.options.authPayload.user;
+		var tweet = req.body.post;
+		ShareService.share(tweet, uid, function(){
+			res.json({status:'success'});
+		});
 	}
 
 }

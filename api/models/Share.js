@@ -6,13 +6,15 @@ module.exports = {
 			autoIncrement:true
 		},
 		tweet: {
-			type: 'integer'
+			model: 'Tweet',
+			required:true
 		},
 		user: {
-			type: 'integer'
+			model: 'User',
+			required:true
 		},
 		timestamp: {
-			type: 'date'
+			type: 'datetime'
 		}
 	}
 };

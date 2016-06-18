@@ -1,5 +1,9 @@
 <article class="card post">
 	<div class="card-block">
+		<span ng-show="post.share">
+			<a href="#/user/{{post.share.id}}">{{post.share.nome}}</a>
+			compartilhou isso
+		</span>
 		<time>{{post.timestamp | date : 'dd/MM/yyyy hh:ss'}}</time>
 		<div class="author">
 			<a href="#/user/{{user.id}}">
@@ -16,5 +20,6 @@
 			<button class="vote up" ng-class="{voted:post.user_vote==1}" ng-click="upvote()"></button>
 			<button class="vote down" ng-class="{voted:post.user_vote==-1}" ng-click="downvote()"></button>
 		</div>
+		<button class="btn btn-primary" ng-click="share()">Compartilhar</button>
 	</div>
 </article>

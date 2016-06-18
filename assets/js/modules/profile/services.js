@@ -17,6 +17,16 @@ angular.module('profile')
 				}
 			}, function(response) {})
 		},
+		share: function(post){
+			ApiService.post('tweet/share',{
+				'post': post
+			}, function(response) {
+				if(callback != undefined){
+					callback();
+				}
+				alert('foi');
+			}, function(response) {})
+		},
 		fetchTimeline: function(callback){
 			ApiService.easypost('tweet/timeline',{},callback);
 		},

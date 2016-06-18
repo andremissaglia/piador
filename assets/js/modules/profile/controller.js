@@ -88,6 +88,9 @@ angular.module('profile', [])
 		}
 		postService.vote($scope.post.id, $scope.post.user_vote);
 	}
+	$scope.share = function(){
+		postService.share($scope.post.id);
+	}
 }])
 .controller('NewPostController', ['$scope', 'postService', function($scope, postService){
 	$scope.title = '';

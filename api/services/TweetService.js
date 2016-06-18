@@ -32,7 +32,9 @@ module.exports = {
 				u.id uid, \
 				u.nome, \
 				u.foto, \
-				coalesce(r.reaction, 0) vote \
+				coalesce(r.reaction, 0) vote, \
+				null :: integer as shareuid, \
+				null as shareuname \
 			FROM tweet t \
 				INNER JOIN public.user u ON u.id = t.user \
 				INNER JOIN follow f ON f.follows = t.user \
@@ -49,12 +51,54 @@ module.exports = {
 				u.id uid, \
 				u.nome, \
 				u.foto, \
-				coalesce(r.reaction, 0) vote \
+				coalesce(r.reaction, 0) vote, \
+				null :: integer as shareuid, \
+				null as shareuname \
 			FROM tweet t \
 				INNER JOIN public.user u ON u.id = t.user \
 				LEFT JOIN reactions r ON r.tweet = t.id \
 					AND r.user = ' + user_id +' \
 			WHERE t.user = '+user_id +' \
+			UNION ALL SELECT \
+				t.id tid, \
+				t.title, \
+				t.text, \
+				s.timestamp, \
+				t.reaction, \
+				u.id uid, \
+				u.nome, \
+				u.foto, \
+				coalesce(r.reaction, 0) vote, \
+				u2.id as shareuid, \
+				u2.nome as shareuname \
+			FROM tweet t \
+				INNER JOIN public.user u ON u.id = t.user \
+				INNER JOIN share s on s.tweet = t.id \
+				INNER JOIN follow f ON f.follows = s.user \
+				INNER JOIN public.user u2 on s.user = u2.id \
+				LEFT JOIN reactions r ON r.tweet = t.id \
+					AND r.user = ' + user_id +' \
+			WHERE f.follower = '+user_id +' \
+				AND f.timestamp < s.timestamp \
+			UNION ALL SELECT \
+				t.id tid, \
+				t.title, \
+				t.text, \
+				s.timestamp, \
+				t.reaction, \
+				u.id uid, \
+				u.nome, \
+				u.foto, \
+				coalesce(r.reaction, 0) vote, \
+				u2.id as shareuid, \
+				u2.nome as shareuname \
+			FROM tweet t \
+				INNER JOIN public.user u ON u.id = t.user \
+				INNER JOIN share s on s.tweet = t.id \
+				INNER JOIN public.user u2 on u2.id  = ' + user_id +'\
+				LEFT JOIN reactions r ON r.tweet = t.id \
+					AND r.user = ' + user_id +' \
+			WHERE s.user = '+user_id +' \
 			ORDER BY timestamp desc \
 			LIMIT 100;',
 		function(err, tweets){
@@ -64,6 +108,13 @@ module.exports = {
 			var list = [];
 			for (var i = 0; i < tweets.rows.length; i++) {
 				var  tweet = tweets.rows[i];
+				var share = undefined;
+				if(tweet.shareuid != null){
+					share = {
+						id:tweet.shareuid,
+						nome:tweet.shareuname
+					};
+				}
 				list.push({
 					id:tweet.tid,
 					title:tweet.title,
@@ -75,7 +126,8 @@ module.exports = {
 						id:tweet.uid,
 						nome:tweet.nome,
 						foto:tweet.foto
-					}
+					},
+					share:share
 				})
 			}
 			callback(list);

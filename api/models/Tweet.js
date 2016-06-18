@@ -4,7 +4,6 @@ module.exports = {
 			type: 'integer',
 			primaryKey: true,
 			autoIncrement:true,
-			required:true
 		},
 		user: {
 			model: 'User',

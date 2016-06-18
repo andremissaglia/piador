@@ -5,7 +5,6 @@ module.exports = {
 			primaryKey:true,
 			unique:true,
 			autoIncrement:true,
-			required:true
 		},
 		nome: {
 			type:'string'
