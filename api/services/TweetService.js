@@ -23,6 +23,7 @@ var getEspeciais = function(texto, delimitador){
 }
 //executa uma query e formata a saida em um padrão
 var queryTweets = function(query, callback){
+	sails.log.debug(query);
 	Tweet.query(query, function(err, tweets){
 		if (err) { 
 			throw err; 
@@ -71,7 +72,10 @@ module.exports = {
 					if(--count == 0){
 						callback();
 					}
-				})
+				});
+			}
+			if(count == 0){
+				callback();
 			}
 		})
 	},
