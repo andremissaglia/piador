@@ -65,7 +65,9 @@ module.exports = {
 			if (err) { 
 				throw err; 
 			}
+			sails.log.debug(tweet.text);
 			var temas = getEspeciais(tweet.text,'#');
+			sails.log.debug("temas: ",temas);
 			var count = temas.length;
 			for (var i = temas.length - 1; i >= 0; i--) {
 				ThemeService.setTheme(post.id, temas[i], function(){
@@ -208,7 +210,7 @@ module.exports = {
 				INNER JOIN theme_posts__tweet_themes tp\
 					ON tp.tweet_themes = t.id \
 				INNER JOIN theme th ON th.id=tp.theme_posts \
-			'+wheretemas+' AND '+wherementions+'\
+			'+wheretemas+' AND '+wherementions+' \
 			ORDER BY timestamp desc \
 			LIMIT 100;', callback);
 	}

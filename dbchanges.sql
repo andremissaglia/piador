@@ -43,11 +43,11 @@ ALTER TABLE share
     ON DELETE CASCADE;
 ALTER TABLE theme_posts__tweet_themes 
   ADD CONSTRAINT fk_theme_tweet_tweet
-    FOREIGN KEY (theme_posts)
+    FOREIGN KEY (tweet_themes)
     REFERENCES public.tweet(id)
     ON DELETE CASCADE,
   ADD CONSTRAINT fk_theme_tweet_theme
-    FOREIGN KEY (tweet_themes)
+    FOREIGN KEY (theme_posts)
     REFERENCES public.theme(id)
     ON DELETE CASCADE;
 CREATE OR REPLACE FUNCTION update_reactions ()
