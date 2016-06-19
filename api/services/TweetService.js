@@ -23,7 +23,6 @@ var getEspeciais = function(texto, delimitador){
 }
 //executa uma query e formata a saida em um padrão
 var queryTweets = function(query, callback){
-	sails.log.debug(query);
 	Tweet.query(query, function(err, tweets){
 		if (err) { 
 			throw err; 
@@ -53,12 +52,14 @@ var queryTweets = function(query, callback){
 				share:share
 			})
 		}
+		sails.log.debug(list);
 		callback(list);
 	});
 }
 module.exports = {
 	new: function(tweet, callback){
 		tweet.timestamp=new Date();
+		tweet.reaction=0;
 		Tweet.create(tweet).exec(function(err, post) {
 			if (err) { 
 				throw err; 
