@@ -3,9 +3,9 @@
 angular.module('search')
 .controller('PostSearchController', ['$scope', 'SearchService', function($scope, SearchService){
 	$scope.posts = [];
-	// SearchService.searchUsers($scope.termo, function(users){
-	// 	$scope.users = users;
-	// });
+	SearchService.searchPosts($scope.termo, function(posts){
+		$scope.posts = posts;
+	});
 }])
 .controller('UserSearchController', ['$scope', 'SearchService', function($scope, SearchService){
 	$scope.users = [];
