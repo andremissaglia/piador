@@ -181,14 +181,14 @@ module.exports = {
 			mentions[i] = "'"+mentions[i]+"'";
 		}
 		mentions = mentions.join(',');
-		var wherementions = mentions ? 'WHERE u.login in ('+mentions+')': 'true';
+		var wherementions = mentions ? ' u.login in ('+mentions+')': 'true';
 
 		var temas = getEspeciais(termo, '#');
 		for (var i = temas.length - 1; i >= 0; i--) {
 			temas[i] = "'"+temas[i]+"'";
 		}
 		temas = temas.join(',');
-		var wheretemas = temas ? 'WHERE th.tema in ('+temas+')': 'true';
+		var wheretemas = temas ? ' th.tema in ('+temas+')': 'true';
 
 		queryTweets('\
 			SELECT DISTINCT \
@@ -210,7 +210,7 @@ module.exports = {
 				INNER JOIN theme_posts__tweet_themes tp\
 					ON tp.tweet_themes = t.id \
 				INNER JOIN theme th ON th.id=tp.theme_posts \
-			'+wheretemas+' AND '+wherementions+' \
+			WHERE '+wheretemas+' AND '+wherementions+' \
 			ORDER BY timestamp desc \
 			LIMIT 100;', callback);
 	}
