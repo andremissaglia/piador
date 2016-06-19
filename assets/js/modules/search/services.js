@@ -3,7 +3,7 @@
 angular.module('search')
 .factory('SearchService', function(ApiService){
 	return {
-		search: function(term, callback){
+		searchUsers: function(term, callback){
 			ApiService.post('/search',{
 				term:term
 			}, function(response){

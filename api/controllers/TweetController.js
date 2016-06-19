@@ -32,6 +32,11 @@ module.exports={
 		ShareService.share(tweet, uid, function(){
 			res.json({status:'success'});
 		});
+	}, 
+	search:function(req, res){
+		TweetService.search(['fulano','andre'],['teste','teste2'], function(){
+
+		});
 	}
 
 }

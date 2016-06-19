@@ -2,8 +2,7 @@ module.exports = {
 	attributes: {
 		tema: {
 			type: 'string',
-			primaryKey: true,
-			required:true
+			unique:true
 		},
 		posts: {
 			collection:'Tweet',

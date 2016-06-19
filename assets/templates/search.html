@@ -1,9 +1,32 @@
-<div class="main-container col-sm-12">
-	<h2>Resultados da pesquisa:</h2>
-	<div class="list-group">
-		<a href="#/user/{{user.id}}" class="list-group-item follow-line" ng-repeat="user in users">
-			<img ng-src="{{user.foto}}" class="thumbnail" />
-			{{user.nome}}
-		</a>
+<div class="card">
+	<div class="card-block">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a href="" class="nav-link" ng-class="{active:tipo=='users'};" ng-click="select('users')">Usuários</a>
+			</li>
+			<li class="nav-item">
+				<a href="" class="nav-link" ng-class="{active:tipo=='posts'};" ng-click="select('posts')">Posts</a>
+			</li>
+		</ul>
+		<h2 class="card-title">Resultados da pesquisa:</h2>
+		<div ng-show="tipo=='users'" ng-controller="UserSearchController">
+			<div class="list-group">
+				<a href="#/user/{{user.id}}" class="list-group-item follow-line" ng-repeat="user in users">
+					<img ng-src="{{user.foto}}" class="thumbnail" />
+					{{user.nome}}
+				</a>
+			</div>
+			<p ng-show="!users.length">Nenhum resultado encontrado :(</p>
+		</div>
 	</div>
+</div>
+<div ng-show="tipo=='posts'" ng-controller="PostSearchController">
+	<div ng-repeat="post in posts">
+		<post></post>
+	</div>
+	<article class="card" ng-show="!posts.length">
+		<div class="card-block">
+			<p>Nenhum resultado encontrado :(</p>
+		</div>
+	</article>
 </div>

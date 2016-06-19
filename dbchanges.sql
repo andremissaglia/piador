@@ -41,6 +41,15 @@ ALTER TABLE share
     FOREIGN KEY ("user")
     REFERENCES public.user(id)
     ON DELETE CASCADE;
+ALTER TABLE theme_posts__tweet_themes 
+  ADD CONSTRAINT fk_theme_tweet_tweet
+    FOREIGN KEY (theme_posts)
+    REFERENCES public.tweet(id)
+    ON DELETE CASCADE,
+  ADD CONSTRAINT fk_theme_tweet_theme
+    FOREIGN KEY (tweet_themes)
+    REFERENCES public.theme(id)
+    ON DELETE CASCADE;
 CREATE OR REPLACE FUNCTION update_reactions ()
   RETURNS TRIGGER AS $$
   BEGIN

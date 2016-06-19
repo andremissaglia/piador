@@ -1,3 +1,10 @@
+var getTemas = function(texto){
+	var matches = texto.match(/#[a-zA-Z0-9]+/g);
+	for (var i = matches.length - 1; i >= 0; i--) {
+		matches[i] = matches[i].slice(1);
+	}
+	return matches;
+}
 module.exports = {
 	new: function(tweet, callback){
 		tweet.timestamp=new Date();
@@ -5,7 +12,18 @@ module.exports = {
 			if (err) { 
 				throw err; 
 			}
-			callback();
+			var temas = getTemas(tweet.text);
+			temas = temas.filter(function(item, pos){
+				return temas.indexOf(item) == pos;
+			})
+			var count = temas.length;
+			for (var i = temas.length - 1; i >= 0; i--) {
+				ThemeService.setTheme(post.id, temas[i], function(){
+					if(--count == 0){
+						callback();
+					}
+				})
+			}
 		})
 	},
 	listFromUser: function(user_id, callback){
@@ -133,4 +151,7 @@ module.exports = {
 			callback(list);
 		});
 	},
+	search:function(mentions, temas, callback){
+		callback();
+	}
 }
