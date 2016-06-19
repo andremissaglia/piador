@@ -6,6 +6,7 @@ angular.module('utils', []);
 angular.module('friends', []);
 angular.module('search', []);
 angular.module('groups', []);
+angular.module('relatorio', []);
 var myApp = angular.module('piadorApp', [
 	'account',
 	'profile',
@@ -14,6 +15,7 @@ var myApp = angular.module('piadorApp', [
 	'friends',
 	'search',
 	'groups',
+	'relatorio',
 	'ngRoute',
 	'ui.bootstrap',
 	'ngAnimate',
@@ -74,7 +76,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			protected: true,
 		})
 		.when('/relatorio', {
-			templateUrl: 'templates/relatorio.html',
+			templateUrl: 'templates/relatorio/relatorio.html',
+			protected: true,
+		})
+		.when('/relatorio/:page', {
+			templateUrl: 'templates/relatorio/relatorio.html',
+			controller:'RelatorioController',
 			protected: true,
 		})
 		.otherwise({ redirectTo: '/login' });

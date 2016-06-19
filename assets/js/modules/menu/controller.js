@@ -20,6 +20,10 @@ angular.module('menu')
 			path:'#/settings'
 		},
 		{
+			title:'Relatório',
+			path:'#/relatorio'
+		},
+		{
 			title:'Logout',
 			path:'#/logout'
 		},

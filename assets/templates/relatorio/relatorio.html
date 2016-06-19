@@ -1,0 +1,20 @@
+<div class="col-md-4">
+	<div class="card">
+		<div class="card-block">
+			<div class="list-group">
+				<a href="#/relatorio/topusers" class="list-group-item">Top 20 Usuários</a>
+				<a href="#/relatorio/flutuacao" class="list-group-item">Flutuação de influência</a>
+				<a href="#/relatorio/toptweets" class="list-group-item">Top 20 Publicações</a>
+				<a href="#/relatorio/zonainfluencia" class="list-group-item">Tamanho da zona de influência</a>
+				<a href="#/relatorio/similares" class="list-group-item">10 Usuários mais similares</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-md-8">
+	<topusers ng-show="page=='topusers'"></topusers>
+	<flutuacao ng-show="page=='flutuacao'"></flutuacao>
+	<toptweets ng-show="page=='toptweets'"></toptweets>
+	<zonainfluencia ng-show="page=='zonainfluencia'"></zonainfluencia>
+	<similares ng-show="page=='similares'"></similares>
+</div>
