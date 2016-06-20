@@ -24,7 +24,6 @@ angular.module('profile')
 				if(callback != undefined){
 					callback();
 				}
-				alert('foi');
 			}, function(response) {})
 		},
 		fetchTimeline: function(callback){
@@ -48,7 +47,7 @@ angular.module('profile')
 			//tema
 			post = post.replace(/#[a-zA-Z0-9]+/g, function(m){
 				var tema = m.slice(1);
-				return '<a href="#/temas/'+tema+'">'+m+'</a>';
+				return '<a href="#/search/%23'+tema+'">'+m+'</a>';
 			});
 			//mention -- nao da pra saber se eh usuario ou grupo
 			post = post.replace(/@[a-zA-Z0-9]+/g, function(m){

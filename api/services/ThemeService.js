@@ -1,7 +1,5 @@
 module.exports = {
 	setTheme:function(tweet_id, tema, callback){
-		sails.log.debug(tweet_id);
-		sails.log.debug(tema);
 		Theme.findOne({tema:tema}).exec(function(err, theme){
 			if(err){
 				throw err;

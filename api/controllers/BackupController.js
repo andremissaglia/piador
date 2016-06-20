@@ -94,11 +94,6 @@ module.exports = {
 						});
 					}
 					if(grupos.length > 0){
-						usergroups.push({
-							relativeId:ultimoDono,
-							nome:grupos[0].nome,
-							users:getIds(grupos[0].users)
-						});
 						groups.push({
 							id:ultimoDono,
 							list:usergroups
@@ -188,7 +183,21 @@ module.exports = {
 				for (var i = data.tweets.length - 1; i >= 0; i--) {
 					data.tweets[i].reaction=0;
 				}
-				Tweet.create(data.tweets).exec(nextCallback);
+				Tweet.create(data.tweets).exec(function(err, tweets){
+					if (err) { 
+						throw err; 
+					}
+					var i = tweets.length;
+					var parse = function(){
+						if(--i < 0){
+							next();
+							return;
+						}
+						TweetService.parseTweet(tweets[i].id, tweets[i].text, parse);
+					}
+					
+					parse();
+				});
 			}
 		},
 		function(){

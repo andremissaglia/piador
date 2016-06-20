@@ -56,25 +56,29 @@ var queryTweets = function(query, callback){
 	});
 }
 module.exports = {
+	parseTweet: function(id, texto, callback){
+		var temas = getEspeciais(texto,'#');
+		var count = temas.length;
+		for (var i = temas.length - 1; i >= 0; i--) {
+			ThemeService.setTheme(id, temas[i], function(){
+				if(--count == 0){
+					callback();
+				}
+			});
+		}
+		if(count == 0){
+			callback();
+		}
+	},
 	new: function(tweet, callback){
 		tweet.timestamp=new Date();
 		tweet.reaction=0;
+		var _self = this;
 		Tweet.create(tweet).exec(function(err, post) {
 			if (err) { 
 				throw err; 
 			}
-			var temas = getEspeciais(tweet.text,'#');
-			var count = temas.length;
-			for (var i = temas.length - 1; i >= 0; i--) {
-				ThemeService.setTheme(post.id, temas[i], function(){
-					if(--count == 0){
-						callback();
-					}
-				});
-			}
-			if(count == 0){
-				callback();
-			}
+			_self.parseTweet(post.id, tweet.text, callback);
 		})
 	},
 	listFromUser: function(user_id, callback){
