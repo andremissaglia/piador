@@ -33,6 +33,16 @@ main{
 /*Settings*/
 .new-password-form{
 	border: 1px solid black;
+	margin: 10px 15px 10px 10px;
+	padding-left: 5px;
+}
+
+.btn-apagar-conta{
+	float: right;
+}
+
+#btn{
+	margin: 12px 15px 0px 15px;
 }
 /*Profile*/
 .profile {
@@ -81,6 +91,8 @@ main{
 .post .author img {
 	width: 64px;
 	height: 64px;
+	margin: 0px 10px 10px 0px;
+
 }
 .post .author a:first-child{
 	text-decoration: none;

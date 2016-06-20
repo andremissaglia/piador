@@ -1,0 +1,15 @@
+<div class="col-md-6 col-md-offset-6 login-area">
+	<messages></messages>
+	<form>
+		<fieldset class="form-group">
+			<label for="user_login">Login</label>
+			<input type="text" class="form-control" id="user_login" ng-model="user" placeholder="Login" />
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="user_pass">Senha</label>
+			<input type="password" class="form-control" id="user_pass" ng-model="senha" placeholder="Senha" />
+		</fieldset>
+		<button type="submit" class="btn btn-default" ng-click="login()">Login</button>
+		<button type="submit" class="btn btn-default" ng-click="cadastrar()">Cadastrar</button>
+	</form>
+</div>
