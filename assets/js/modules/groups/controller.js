@@ -8,6 +8,12 @@ angular.module('groups')
         controller:'MeusGruposController'
     }
 })
+.controller('TimelineGruposController', ['$scope', 'GroupService', function($scope, GroupService){
+	$scope.posts = [];
+	GroupService.timeline($scope.groupid,function(posts){
+		$scope.posts = posts;
+	});
+}])
 .controller('MeusGruposController', ['$scope', 'GroupService', function($scope, GroupService){
 	$scope.grupos = [];
 	GroupService.setCallback(function(grupos){

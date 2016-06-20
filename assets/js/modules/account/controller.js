@@ -41,6 +41,9 @@ angular.module('account')
 	$scope.openPopup = function() {
 		$scope.popup.opened = true;
 	};
+	$scope.closePopup = function() {
+		$scope.popup.opened = false;
+	};
 	$scope.popup = {opened: false};
 
 	$scope.login = '';
@@ -88,6 +91,9 @@ angular.module('account')
 	};
 	$scope.openPopup = function() {
 		$scope.popup.opened = true;
+	};
+	$scope.closePopup = function() {
+		$scope.popup.opened = false;
 	};
 	$scope.popup = {opened: false};
 

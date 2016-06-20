@@ -23,7 +23,6 @@ var getEspeciais = function(texto, delimitador){
 }
 //executa uma query e formata a saida em um padrão
 var queryTweets = function(query, callback){
-	sails.log.debug(query);
 	Tweet.query(query, function(err, tweets){
 		if (err) { 
 			throw err; 
@@ -53,7 +52,6 @@ var queryTweets = function(query, callback){
 				share:share
 			})
 		}
-		sails.log.debug(list);
 		callback(list);
 	});
 }
@@ -65,9 +63,7 @@ module.exports = {
 			if (err) { 
 				throw err; 
 			}
-			sails.log.debug(tweet.text);
 			var temas = getEspeciais(tweet.text,'#');
-			sails.log.debug("temas: ",temas);
 			var count = temas.length;
 			for (var i = temas.length - 1; i >= 0; i--) {
 				ThemeService.setTheme(post.id, temas[i], function(){
@@ -213,5 +209,50 @@ module.exports = {
 			WHERE '+wheretemas+' AND '+wherementions+' \
 			ORDER BY timestamp desc \
 			LIMIT 100;', callback);
+	},
+	findByGroup(user_id, gid, callback){
+		gid = 1*gid;
+		user_id = 1*user_id;
+		queryTweets('\
+			SELECT \
+				t.id tid,\
+				t.title, \
+				t.text, \
+				t.timestamp, \
+				t.reaction, \
+				u.id uid, \
+				u.nome, \
+				u.foto, \
+				coalesce(r.reaction, 0) vote, \
+				null :: integer as shareuid, \
+				null as shareuname \
+			FROM tweet t \
+				INNER JOIN public.user u ON u.id = t.user \
+				INNER JOIN public.groupuser gu on gu.userid = u.id \
+				LEFT JOIN reactions r ON r.tweet = t.id \
+					AND r.user = ' + user_id +' \
+			WHERE gu.groupid = ' + gid + ' \
+			UNION ALL SELECT \
+				t.id tid, \
+				t.title, \
+				t.text, \
+				s.timestamp, \
+				t.reaction, \
+				u.id uid, \
+				u.nome, \
+				u.foto, \
+				coalesce(r.reaction, 0) vote, \
+				u2.id as shareuid, \
+				u2.nome as shareuname \
+			FROM tweet t \
+				INNER JOIN public.user u ON u.id = t.user \
+				INNER JOIN share s on s.tweet = t.id \
+				INNER JOIN public.user u2 on s.user = u2.id \
+				INNER JOIN public.groupuser gu on gu.userid = u2.id \
+				LEFT JOIN reactions r ON r.tweet = t.id \
+					AND r.user = ' + user_id +' \
+			WHERE gu.groupid = ' + gid + ' \
+			ORDER BY timestamp desc \
+			LIMIT 100;',callback);
 	}
 }

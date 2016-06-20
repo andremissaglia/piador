@@ -18,6 +18,13 @@ module.exports={
 			res.json(tweets);
 		})
 	},
+	grouptimeline:function(req, res){
+		var uid = req.options.authPayload.user;
+		var gid = req.body.gid;
+		TweetService.findByGroup(uid, gid, function(tweets) {
+			res.json(tweets);
+		})
+	},
 	react:function(req, res){
 		var uid = req.options.authPayload.user;
 		var tweet = req.body.tweet;

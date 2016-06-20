@@ -87,6 +87,15 @@ angular.module('account')
 		}, function(response){
 			callback({status:"fail"});
 		});
+	};
+	model.getByLogin = function(login, callback){
+		ApiService.post('user/findByUsername',{
+			login:login
+		}, function(response){
+			callback(response.data.id);
+		}, function(response){
+			callback(-1);
+		});
 	}
 	return model;
 })

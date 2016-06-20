@@ -18,6 +18,18 @@ module.exports={
 			res.json(group);
 		});
 	},
+	getByName:function(req, res){
+		var uid = req.options.authPayload.user;
+		var nome = req.body.nome;
+		GroupService.getByName(uid, nome, function(group){
+			if(group){
+				res.json(group);
+				return;
+			}
+			res.status(404);
+			res.json({status:'not found'});
+		});
+	},
 	destroy:function(req, res){
 		var gid = req.body.id;
 		GroupService.destroy(gid,function(){

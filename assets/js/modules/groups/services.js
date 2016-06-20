@@ -22,6 +22,15 @@ angular.module('groups')
 				id:gid
 			},callback);
 		},
+		getByName:function(name, callback){
+			ApiService.post('/group/getByName',{
+				nome:name
+			},function(response){
+				callback(response.data.id);
+			},function(response){
+				callback(-1);
+			});
+		},
 		getUsers:function(gid, callback){
 			ApiService.easypost('/group/getUsers',{
 				id:gid
@@ -43,6 +52,11 @@ angular.module('groups')
 				gid:gid,
 				uid:uid
 			}, callback);
+		},
+		timeline:function(gid, callback){
+			ApiService.easypost('/tweet/grouptimeline', {
+				gid:gid,
+			}, callback);	
 		},
 		setCallback:function(c){
 			listCallback = c;

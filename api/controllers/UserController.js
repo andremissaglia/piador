@@ -54,9 +54,22 @@ module.exports = {
 		UserService.find(uid, function(usr){
 			if(!usr){
 				res.status(404);
+				res.json({status:'not found'});
 				return;
 			}
 			res.json(usr);
 		});
-	}
+	},
+	findByUsername: function(req, res){
+		var login = req.body.login;
+		UserService.findByUsername(login, function(usr){
+			sails.log.debug(usr);
+			if(!usr){
+				res.status(404);
+				res.json({status:'not found'});
+				return;
+			}
+			res.json(usr);
+		});
+	},
 }

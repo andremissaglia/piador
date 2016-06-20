@@ -12,7 +12,7 @@
 		<div class="form-group">
 			<label for="user_nascimento">Nascimento</label>
 			<input type="text" class="form-control" id="user_nascimento" 
-			required="required" ng-model="nascimento" uib-datepicker-popup="dd/MM/yyyy" is-open="popup.opened" ng-required="true" close-text="Close" ng-click="openPopup()" />
+			required="required" ng-model="nascimento" uib-datepicker-popup="dd/MM/yyyy" is-open="popup.opened" ng-required="true" close-text="Close" ng-focus="openPopup()" ng-blur="closePopup()" />
 		</div>
 		<div class="form-group">
 			<label for="user_pass">Senha</label>

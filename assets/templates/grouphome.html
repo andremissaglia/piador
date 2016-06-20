@@ -9,7 +9,7 @@
 						<button type="button" class="close" aria-label="Close" ng-click="remove(membro.id)">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<a href="/user/{{membro.id}}">@{{membro.login}}</a>
+						<a href="#/user/{{membro.id}}">@{{membro.login}}</a>
 					</li>
 				</ul>
 			</nav>
@@ -27,5 +27,8 @@
 	<grupos></grupos>
 </div>
 
-<div class="col-sm-8">
+<div class="col-sm-8" ng-controller="TimelineGruposController">
+	<div ng-repeat="post in posts">
+		<post></post>
+	</div>
 </div>

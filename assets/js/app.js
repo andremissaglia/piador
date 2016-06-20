@@ -84,6 +84,14 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 			controller:'RelatorioController',
 			protected: true,
 		})
+		.when('/mention/:username', {
+			protected: true,
+			resolve:{
+				mention:function($route, MentionService){
+					MentionService($route.current.params.username);
+				}
+			}
+		})
 		.otherwise({ redirectTo: '/login' });
 }]).run(function($rootScope, SessionService){
 	$rootScope.$on('$routeChangeStart', SessionService.validate);

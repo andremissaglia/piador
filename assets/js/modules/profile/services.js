@@ -71,10 +71,29 @@ angular.module('profile')
 				return '</p><video controls><source src="'+link+'"></video><p>';
 			});
 			//quebra de linha com dois enters
-			post = post.replace(/\n{2,}/g, function(m){
+			post = post.replace(/\n+/g, function(m){
 				return '</p><p>';
 			});
 			return post;
 		}
 	};
+})
+.factory('MentionService', function($location, usermodel, GroupService){
+	return function(username){
+		GroupService.getByName(username, function(id){
+			if(id >= 0){
+				$location.path('#/grupos/'+id);
+				return;
+			}
+			usermodel.getByLogin(username, function(id){
+				if(id >= 0){
+					$location.path('#/user/'+id);
+				} else {
+					$location.path('#/dashboard');
+				}
+				
+			});
+		});
+		
+	}
 });

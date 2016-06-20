@@ -36,6 +36,20 @@ module.exports={
 			callback(group);
 		});	
 	},
+	getByName:function(dono, nome, callback){
+		Group.findOne({
+			select:['id'],
+			where:{
+				nome:nome,
+				dono:dono
+			}
+		}).exec(function(err, group){
+			if(err){
+				throw err;
+			}
+			callback(group);
+		});
+	},
 	destroy:function(gid, callback){
 		Group.destroy({id:gid}).exec(function(err, group){
 			if(err){
